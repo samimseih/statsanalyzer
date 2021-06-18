@@ -1,0 +1,9 @@
+boto3 
+pandas 
+sqlalchemy==1.4 
+pg8000 
+fsspec 
+s3fs
+pyinstaller
+pandasql
+Jinja2
