@@ -38,3 +38,9 @@ pyinstaller \
         --specpath /tmp/snapper_rds \
         --paths statsanalyzer \
         --onefile statsanalyzer/snapper_rds.py
+cd dist
+mkdir $1
+mv capture $1/.
+mv snapper_rds $1/.
+mv report $1/.
+zip -r $1.zip $1

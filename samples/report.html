@@ -177,9 +177,9 @@ table {
   <tbody>
     <tr>
       <td>demodb1</td>
-      <td>4</td>
-      <td>2021-07-25 17:28:24</td>
-      <td>2021-07-25 17:30:18</td>
+      <td>2</td>
+      <td>2021-07-29 14:26:22</td>
+      <td>2021-07-29 14:26:27</td>
     </tr>
   </tbody>
 </table></td>
@@ -208,7 +208,7 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>2021-07-25 17:28:24</td>
+      <td>2021-07-29 14:26:22</td>
       <td>False</td>
     </tr>
   </tbody>
@@ -243,6 +243,10 @@ table {
       <h3 id="recom" >Recommendations</h3>
       <table border="1" class="dataframe tftable2">
   <tbody>
+    <tr>
+      <td>database</td>
+      <td>Block hit ratio is below 99%. A low block hit ratio will contribute to more disk reads. It is recommended to review the shared_buffers parameter and top I/O bound SQLs for improvement</td>
+    </tr>
   </tbody>
 </table>
       <table border="1" class="dataframe tftable2">
@@ -282,24 +286,14 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>86</td>
+      <td>2</td>
       <td>CPU</td>
       <td>CPU</td>
     </tr>
     <tr>
-      <td>17</td>
-      <td>DataFileRead</td>
-      <td>IO</td>
-    </tr>
-    <tr>
-      <td>12</td>
+      <td>1</td>
       <td>ClientRead</td>
       <td>Client</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>XactSync</td>
-      <td>IO</td>
     </tr>
   </tbody>
 </table>
@@ -312,15 +306,11 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>86</td>
+      <td>2</td>
       <td>CPU</td>
     </tr>
     <tr>
-      <td>24</td>
-      <td>IO</td>
-    </tr>
-    <tr>
-      <td>12</td>
+      <td>1</td>
       <td>Client</td>
     </tr>
   </tbody>
@@ -348,9 +338,9 @@ table {
     <tr>
       <td>demodb1</td>
       <td>16400</td>
-      <td>99.95</td>
-      <td>5.8 GB</td>
-      <td>12.2 TB</td>
+      <td>91.28</td>
+      <td>143.7 MB</td>
+      <td>1.5 GB</td>
       <td>100.0</td>
     </tr>
   </tbody>
@@ -373,15 +363,7 @@ table {
       <td>16384</td>
       <td>100</td>
       <td>0.0 bytes</td>
-      <td>39.6 MB</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>14313</td>
-      <td>100</td>
-      <td>0.0 bytes</td>
-      <td>13.8 MB</td>
+      <td>1.4 MB</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -389,7 +371,15 @@ table {
       <td>14312</td>
       <td>100</td>
       <td>0.0 bytes</td>
-      <td>13.8 MB</td>
+      <td>1.2 MB</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>postgres</td>
+      <td>14313</td>
+      <td>100</td>
+      <td>0.0 bytes</td>
+      <td>616.0 KB</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -397,7 +387,7 @@ table {
       <td>1</td>
       <td>100</td>
       <td>0.0 bytes</td>
-      <td>13.8 MB</td>
+      <td>616.0 KB</td>
       <td>0.0</td>
     </tr>
   </tbody>
@@ -422,79 +412,97 @@ table {
       <th>total calls</th>
       <th>ms per call</th>
       <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
       <th>query</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td>statscollector</td>
+      <td>6215423120413141912</td>
+      <td>8.0 KB</td>
+      <td>13.4 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>99.94</td>
+      <td>1</td>
+      <td>2.00</td>
+      <td>0.18</td>
+      <td>1713.00</td>
+      <td>1.00</td>
+      <td>1.02</td>
+      <td>select  $1 capture_version, * from\n\t\t\t\t\t(select \n\t\t\t\t\t  d.conname,\n\t\t\t\t\t  b.schemaname,\n                      b.relid,\n                      b.indexrelid,\n\t\t\t\t\t  b.relname,\n\t\t\t\t\t  b.indexrelname,\n\t\t\t\t\t  b.idx_scan, \n\t\t\t\t\t  b.idx_tup_read,\n\t\t\t\t\t  b.idx_tup_fetch,\n\t\t\t\t\t  a.idx_blks_read, \n\t\t\t\t\t  a.idx_blks_hit, \n\t\t\t\t\t  c.indisunique, \n\t\t\t\t\t  c.indisprimary, \n\t\t\t\t\t  c.indisvalid, \n\t\t\t\t\t  c.indkey::text as indkey\n\t\t\t\t\t  from pg_statio_all_indexes a, pg_index c, pg_stat_all_indexes b full outer join pg_catalog.pg_constraint d on d.conindid=b.indexrelid \n\t\t\t\t\t  where c.indrelid=a.relid \n\t\t\t\t\t  and c.indexrelid=a.indexrelid \n\t\t\t\t\t  and a.relid = b.relid \n\t\t\t\t\t  and a.schemaname = b.schemaname \n\t\t\t\t\t  and a.relname = b.relname \n\t\t\t\t\t  and a.indexrelname = b.indexrelname \n\t\t\t\t\t  and a.indexrelid=b.indexrelid) as index_stats</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>3565551731261737535</td>
+      <td>24.0 KB</td>
+      <td>496.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>95.38</td>
+      <td>1</td>
+      <td>17.00</td>
+      <td>0.18</td>
+      <td>62.00</td>
+      <td>3.00</td>
+      <td>5.34</td>
+      <td>select $1 capture_version, * from \n\t\t\t\t(select \n\t\t\t\t\tb.*,\n\t\t\t\t\ta.heap_blks_read,\n\t\t\t\t\ta.heap_blks_hit,\n\t\t\t\t\ta.idx_blks_read,\n\t\t\t\t\ta.idx_blks_hit,\n\t\t\t\t\ta.toast_blks_read,\n\t\t\t\t\ta.toast_blks_hit,\n\t\t\t\t\ta.tidx_blks_read,\n\t\t\t\t\ta.tidx_blks_hit\n\t\t\t\t\tfrom pg_statio_all_tables a, pg_stat_all_tables b \n\t\t\t\t\twhere a.relid = b.relid and a.schemaname = b.schemaname and a.relname = b.relname) as table_stats</td>
+    </tr>
+    <tr>
       <td>postgres</td>
-      <td>4913789352928063626</td>
-      <td>7.5 MB</td>
-      <td>12.2 TB</td>
+      <td>9156502150409338362</td>
+      <td>141.9 MB</td>
+      <td>1.4 GB</td>
+      <td>2.6 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>91.18</td>
+      <td>9848</td>
+      <td>2.42</td>
+      <td>1758.89</td>
+      <td>19.06</td>
+      <td>1.84</td>
+      <td>2.12</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>5778854655118074406</td>
+      <td>0.0 bytes</td>
+      <td>176.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>100.00</td>
-      <td>16231</td>
-      <td>140.94</td>
-      <td>141.72</td>
-      <td>select col5 from large where col5 = ( select col5 from large where created_at between now()- interval $1 and now()- interval $2 order by random() limit $3 )</td>
+      <td>11</td>
+      <td>0.00</td>
+      <td>1.96</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=$1</td>
     </tr>
     <tr>
-      <td>postgres</td>
-      <td>5570667045389566826</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
+      <td>statscollector</td>
+      <td>4427547915007460681</td>
+      <td>0.0 bytes</td>
+      <td>56.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16229</td>
-      <td>2.85</td>
-      <td>141.70</td>
-      <td>select * from large4 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>6159519252493727236</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16228</td>
-      <td>2.79</td>
-      <td>141.69</td>
-      <td>select * from large3 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>1525015097275275443</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16228</td>
-      <td>2.92</td>
-      <td>141.69</td>
-      <td>select * from large2 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>1171537872203601827</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16227</td>
-      <td>2.95</td>
-      <td>141.68</td>
-      <td>select * from large1 where id=$1</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>11.00</td>
+      <td>0.18</td>
+      <td>7.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select \n    $1 capture_version, \n    current_database(), \n    pg_is_in_recovery() standby, \n    age(b.datfrozenxid) oldest_transaction_age, \n    * \nfrom pg_stat_database a, pg_database b \nwhere a.datid=b.oid</td>
     </tr>
   </tbody>
 </table>
@@ -514,16 +522,6 @@ table {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>public.large6</td>
-      <td>2</td>
-      <td>1</td>
-      <td>50</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
   </tbody>
 </table>
    </div>
@@ -2864,31 +2862,31 @@ table {
       <div id="table_stats" class="tabcontentSub">
          <ul>
             <li>
-               <a href="#ts_hr">Top 50 in heap reads</a>
+               <a href="#ts_hr">Top 50 tables read from disk</a>
             </li>
             <li>
-               <a href="#ts_ir">Top 50 in index reads</a>
+               <a href="#ts_ir">Top 50 tables with indexes read from disk</a>
             </li>
             <li>
-               <a href="#ts_tr">Top 50 in toast reads</a>
+               <a href="#ts_tr">Top 50 tables with toast read from disk</a>
             </li>
             <li>
-               <a href="#ts_tir">Top 50 in toast index reads</a>
+               <a href="#ts_tir">Top 50 tables with toast indexes from disk</a>
             </li>
             <li>
-               <a href="#ts_hh">Top 50 in heap hits</a>
+               <a href="#ts_hh">Top 50 tables read from memory</a>
             </li>
             <li>
-               <a href="#ts_ih">Top 50 in index hits</a>
+               <a href="#ts_ih">Top 50 tables with indexs read from memory</a>
             </li>
             <li>
-               <a href="#ts_th">Top 50 in toast hits</a>
+               <a href="#ts_th">Top 50 tables with toast read from memory</a>
             </li>
             <li>
-               <a href="#ts_tih">Top 50 in toast index hits</a>
+               <a href="#ts_tih">Top 50 tables with toast indexes from memory</a>
             </li>
          </ul>
-         <h2 id="ts_hr">Top 50 in heap reads</h2>
+         <h2 id="ts_hr">Top 50 tables read from disk</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -2900,58 +2898,73 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>public.large6</td>
-      <td>2.1 GB</td>
-      <td>51.70</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>119.5 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>119.5 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>119.5 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>119.5 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>119.5 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>119.5 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
       <td>public.large</td>
-      <td>56.4 MB</td>
-      <td>100.00</td>
+      <td>176.0 KB</td>
+      <td>99.82</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_auth_members</td>
-      <td>8.0 KB</td>
-      <td>92.86</td>
+      <td>pg_catalog.pg_proc</td>
+      <td>80.0 KB</td>
+      <td>89.36</td>
+    </tr>
+    <tr>
+      <td>pg_toast.pg_toast_2618</td>
+      <td>72.0 KB</td>
+      <td>0.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_attribute</td>
+      <td>64.0 KB</td>
+      <td>95.72</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_rewrite</td>
+      <td>56.0 KB</td>
+      <td>46.15</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_index</td>
+      <td>40.0 KB</td>
+      <td>98.70</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic</td>
+      <td>24.0 KB</td>
+      <td>91.43</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator</td>
       <td>8.0 KB</td>
-      <td>99.87</td>
+      <td>95.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_opclass</td>
+      <td>8.0 KB</td>
+      <td>93.33</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint</td>
+      <td>8.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class</td>
+      <td>8.0 KB</td>
+      <td>99.86</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast</td>
+      <td>8.0 KB</td>
+      <td>50.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_aggregate</td>
+      <td>8.0 KB</td>
+      <td>0.00</td>
     </tr>
   </tbody>
 </table>
-         <h2 id="ts_ir">Top 50 in index reads</h2>
+         <h2 id="ts_ir">Top 50 tables with indexs read from disk</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -2963,63 +2976,53 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>public.large6</td>
-      <td>1.6 GB</td>
-      <td>26.34</td>
-    </tr>
-    <tr>
       <td>public.large</td>
-      <td>1.2 GB</td>
-      <td>98.19</td>
+      <td>144.4 MB</td>
+      <td>89.98</td>
     </tr>
     <tr>
-      <td>public.large4</td>
-      <td>20.7 MB</td>
-      <td>95.91</td>
+      <td>pg_catalog.pg_constraint</td>
+      <td>48.0 KB</td>
+      <td>25.00</td>
     </tr>
     <tr>
-      <td>public.large3</td>
-      <td>20.7 MB</td>
-      <td>95.91</td>
+      <td>pg_catalog.pg_proc</td>
+      <td>40.0 KB</td>
+      <td>97.40</td>
     </tr>
     <tr>
-      <td>public.large2</td>
-      <td>20.7 MB</td>
-      <td>95.91</td>
+      <td>pg_catalog.pg_type</td>
+      <td>24.0 KB</td>
+      <td>96.10</td>
     </tr>
     <tr>
-      <td>public.large5</td>
-      <td>20.7 MB</td>
-      <td>95.91</td>
+      <td>pg_catalog.pg_opclass</td>
+      <td>16.0 KB</td>
+      <td>81.82</td>
     </tr>
     <tr>
-      <td>public.large1</td>
-      <td>20.7 MB</td>
-      <td>95.91</td>
+      <td>pg_catalog.pg_cast</td>
+      <td>16.0 KB</td>
+      <td>75.00</td>
     </tr>
     <tr>
-      <td>public.large7</td>
-      <td>20.5 MB</td>
-      <td>95.95</td>
+      <td>pg_catalog.pg_aggregate</td>
+      <td>16.0 KB</td>
+      <td>0.00</td>
     </tr>
     <tr>
-      <td>pg_toast.pg_toast_57630</td>
+      <td>pg_catalog.pg_class</td>
       <td>8.0 KB</td>
-      <td>50.00</td>
+      <td>99.90</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_auth_members</td>
+      <td>pg_catalog.pg_attribute</td>
       <td>8.0 KB</td>
-      <td>96.67</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_attrdef</td>
-      <td>8.0 KB</td>
-      <td>96.30</td>
+      <td>99.73</td>
     </tr>
   </tbody>
 </table>
-         <h2 id="ts_tr">Top 50 in toast reads</h2>
+         <h2 id="ts_tr">Top 50 tables with toast read from disk</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3030,9 +3033,14 @@ table {
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>pg_catalog.pg_rewrite</td>
+      <td>72.0 KB</td>
+      <td>0</td>
+    </tr>
   </tbody>
 </table>
-         <h2 id="ts_tir">Top 50 in toast index reads</h2>
+         <h2 id="ts_tir">Top 50 tables with toast indexes from disk</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3043,14 +3051,9 @@ table {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>public.large6</td>
-      <td>56.0 KB</td>
-      <td>50.0</td>
-    </tr>
   </tbody>
 </table>
-         <h2 id="ts_hh">Top 50 in heap hits</h2>
+         <h2 id="ts_hh">Top 50 tables read from memory</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3063,157 +3066,107 @@ table {
   <tbody>
     <tr>
       <td>public.large</td>
-      <td>12.2 TB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>2.3 GB</td>
-      <td>51.70</td>
+      <td>96.7 MB</td>
+      <td>99.82</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_class</td>
-      <td>28.9 MB</td>
-      <td>100.00</td>
+      <td>5.6 MB</td>
+      <td>99.86</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_index</td>
-      <td>10.7 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>7.3 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>7.3 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>7.3 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>7.3 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>7.3 MB</td>
-      <td>5.75</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>7.3 MB</td>
-      <td>5.75</td>
+      <td>3.0 MB</td>
+      <td>98.70</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_namespace</td>
-      <td>6.3 MB</td>
+      <td>1.7 MB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_attribute</td>
-      <td>6.0 MB</td>
-      <td>99.87</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_database</td>
-      <td>5.4 MB</td>
-      <td>100.00</td>
+      <td>1.4 MB</td>
+      <td>95.72</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_proc</td>
-      <td>2.0 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_db_role_setting</td>
-      <td>1.2 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_authid</td>
-      <td>1.2 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_statistic</td>
-      <td>768.0 KB</td>
-      <td>100.00</td>
+      <td>672.0 KB</td>
+      <td>89.36</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_type</td>
-      <td>576.0 KB</td>
+      <td>296.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_amop</td>
-      <td>552.0 KB</td>
+      <td>280.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_database</td>
+      <td>272.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic</td>
+      <td>256.0 KB</td>
+      <td>91.43</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator</td>
+      <td>152.0 KB</td>
+      <td>95.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid</td>
+      <td>128.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_opclass</td>
-      <td>544.0 KB</td>
-      <td>100.00</td>
+      <td>112.0 KB</td>
+      <td>93.33</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_amproc</td>
-      <td>352.0 KB</td>
+      <td>56.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_operator</td>
-      <td>336.0 KB</td>
+      <td>pg_catalog.pg_db_role_setting</td>
+      <td>56.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_rewrite</td>
-      <td>312.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_am</td>
-      <td>224.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_attrdef</td>
-      <td>208.0 KB</td>
-      <td>100.00</td>
+      <td>48.0 KB</td>
+      <td>46.15</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_auth_members</td>
-      <td>104.0 KB</td>
-      <td>92.86</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_cast</td>
-      <td>48.0 KB</td>
+      <td>32.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_tablespace</td>
-      <td>48.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_constraint</td>
       <td>24.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_aggregate</td>
+      <td>pg_catalog.pg_am</td>
       <td>24.0 KB</td>
       <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast</td>
+      <td>8.0 KB</td>
+      <td>50.00</td>
     </tr>
   </tbody>
 </table>
-         <h2 id="ts_ih">Top 50 in index hits</h2>
+         <h2 id="ts_ih">Top 50 tables with indexs read from memory</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3226,167 +3179,117 @@ table {
   <tbody>
     <tr>
       <td>public.large</td>
-      <td>66.0 GB</td>
-      <td>98.19</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>576.1 MB</td>
-      <td>26.34</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>486.6 MB</td>
-      <td>95.95</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>486.4 MB</td>
-      <td>95.91</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>486.4 MB</td>
-      <td>95.91</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>486.3 MB</td>
-      <td>95.91</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>486.3 MB</td>
-      <td>95.91</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>486.3 MB</td>
-      <td>95.91</td>
+      <td>1.3 GB</td>
+      <td>89.98</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_class</td>
-      <td>31.2 MB</td>
-      <td>100.00</td>
+      <td>7.6 MB</td>
+      <td>99.90</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_attribute</td>
-      <td>12.0 MB</td>
-      <td>100.00</td>
+      <td>2.9 MB</td>
+      <td>99.73</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_index</td>
-      <td>7.8 MB</td>
+      <td>2.0 MB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_namespace</td>
-      <td>6.3 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_database</td>
-      <td>5.3 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_db_role_setting</td>
-      <td>4.6 MB</td>
+      <td>1.7 MB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_proc</td>
-      <td>4.0 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_authid</td>
-      <td>2.2 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_statistic</td>
       <td>1.5 MB</td>
-      <td>100.00</td>
+      <td>97.40</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_type</td>
-      <td>1.2 MB</td>
-      <td>100.00</td>
+      <td>592.0 KB</td>
+      <td>96.10</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_amproc</td>
-      <td>920.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_statistic_ext</td>
-      <td>736.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_operator</td>
-      <td>720.0 KB</td>
+      <td>pg_catalog.pg_statistic</td>
+      <td>576.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_amop</td>
-      <td>672.0 KB</td>
+      <td>368.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_opclass</td>
-      <td>592.0 KB</td>
+      <td>pg_catalog.pg_operator</td>
+      <td>352.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_rewrite</td>
+      <td>pg_catalog.pg_database</td>
       <td>312.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
+      <td>pg_catalog.pg_db_role_setting</td>
+      <td>280.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid</td>
+      <td>192.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic_ext</td>
+      <td>144.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amproc</td>
+      <td>136.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_rewrite</td>
+      <td>104.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
       <td>pg_catalog.pg_auth_members</td>
-      <td>232.0 KB</td>
-      <td>96.67</td>
+      <td>96.0 KB</td>
+      <td>100.00</td>
     </tr>
     <tr>
       <td>pg_toast.pg_toast_2618</td>
-      <td>216.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_attrdef</td>
-      <td>208.0 KB</td>
-      <td>96.30</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_constraint</td>
-      <td>192.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_cast</td>
-      <td>192.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_tablespace</td>
       <td>72.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_aggregate</td>
+      <td>pg_catalog.pg_opclass</td>
+      <td>72.0 KB</td>
+      <td>81.82</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast</td>
       <td>48.0 KB</td>
+      <td>75.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_tablespace</td>
+      <td>40.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_toast.pg_toast_57630</td>
-      <td>8.0 KB</td>
-      <td>50.00</td>
+      <td>pg_catalog.pg_constraint</td>
+      <td>16.0 KB</td>
+      <td>25.00</td>
     </tr>
   </tbody>
 </table>
-         <h2 id="ts_th">Top 50 in toast hits</h2>
+         <h2 id="ts_th">Top 50 tables with toast read from memory</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3399,7 +3302,7 @@ table {
   <tbody>
   </tbody>
 </table>
-         <h2 id="ts_tih">Top 50 in toast index hits</h2>
+         <h2 id="ts_tih">Top 50 tables with toast indexes from memory</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3412,13 +3315,8 @@ table {
   <tbody>
     <tr>
       <td>pg_catalog.pg_rewrite</td>
-      <td>432.0 KB</td>
-      <td>100.0</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>56.0 KB</td>
-      <td>50.0</td>
+      <td>144.0 KB</td>
+      <td>100</td>
     </tr>
   </tbody>
 </table>
@@ -3429,10 +3327,10 @@ table {
                <a href="#is_iu">Top 50 tables with most unused indexes</a>
             </li>         
             <li>
-               <a href="#is_ir">Top 50 in index reads</a>
+               <a href="#is_ir">Top 50 indexes read from disk</a>
             </li>
             <li>
-               <a href="#is_ih">Top 50 in index hits</a>
+               <a href="#is_ih">Top 50 indexes read from memory</a>
             </li>
          </ul>
          <h2 id="is_iu">Top 50 in most unused indexes</h2>
@@ -3446,36 +3344,8 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>public.large6</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>4</td>
-    </tr>
-    <tr>
       <td>public.large</td>
-      <td>3</td>
+      <td>5</td>
     </tr>
   </tbody>
 </table>
@@ -3491,6 +3361,10 @@ table {
   <tbody>
     <tr>
       <td>public.large</td>
+      <td>public.large.large_updated_at</td>
+    </tr>
+    <tr>
+      <td>public.large</td>
       <td>public.large.large_col0</td>
     </tr>
     <tr>
@@ -3502,169 +3376,13 @@ table {
       <td>public.large.large_col10</td>
     </tr>
     <tr>
-      <td>public.large1</td>
-      <td>public.large1.large1_created_at</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>public.large1.large1_updated_at</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>public.large1.large1_col0</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>public.large1.large1_col1</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>public.large1.large1_col10</td>
-    </tr>
-    <tr>
-      <td>public.large1</td>
-      <td>public.large1.large1_col5</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>public.large2.large2_created_at</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>public.large2.large2_updated_at</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>public.large2.large2_col0</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>public.large2.large2_col10</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>public.large2.large2_col5</td>
-    </tr>
-    <tr>
-      <td>public.large2</td>
-      <td>public.large2.large2_col1</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>public.large3.large3_created_at</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>public.large3.large3_updated_at</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>public.large3.large3_col0</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>public.large3.large3_col1</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>public.large3.large3_col10</td>
-    </tr>
-    <tr>
-      <td>public.large3</td>
-      <td>public.large3.large3_col5</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>public.large4.large4_updated_at</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>public.large4.large4_created_at</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>public.large4.large4_col0</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>public.large4.large4_col1</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>public.large4.large4_col10</td>
-    </tr>
-    <tr>
-      <td>public.large4</td>
-      <td>public.large4.large4_col5</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>public.large5.large5_created_at</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>public.large5.large5_updated_at</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>public.large5.large5_col0</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>public.large5.large5_col1</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>public.large5.large5_col10</td>
-    </tr>
-    <tr>
-      <td>public.large5</td>
-      <td>public.large5.large5_col5</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>public.large6.large6_created_at</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>public.large6.large6_updated_at</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>public.large6.large6_col0</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>public.large6.large6_col1</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>public.large6.large6_col10</td>
-    </tr>
-    <tr>
-      <td>public.large6</td>
-      <td>public.large6.large6_col5</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>public.large7.large7_col5</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>public.large7.large7_col10</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>public.large7.large7_col0</td>
-    </tr>
-    <tr>
-      <td>public.large7</td>
-      <td>public.large7.large7_col1</td>
+      <td>public.large</td>
+      <td>public.large.large_col5</td>
     </tr>
   </tbody>
 </table>
          </details>
-         <h2 id="is_ir">Top 50 in index reads</h2>
+         <h2 id="is_ir">Top 50 indexes read from disk</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3676,113 +3394,103 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>public.large.large_col5</td>
-      <td>1.2 GB</td>
-      <td>83.12</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_col10</td>
-      <td>643.9 MB</td>
-      <td>0.03</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_col1</td>
-      <td>363.4 MB</td>
-      <td>0.06</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_col5</td>
-      <td>363.2 MB</td>
-      <td>0.06</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_updated_at</td>
-      <td>100.7 MB</td>
-      <td>0.21</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_created_at</td>
-      <td>100.7 MB</td>
-      <td>0.21</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_pkey</td>
-      <td>39.4 MB</td>
-      <td>91.92</td>
-    </tr>
-    <tr>
-      <td>public.large4.large4_pkey</td>
-      <td>20.7 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large2.large2_pkey</td>
-      <td>20.7 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large3.large3_pkey</td>
-      <td>20.7 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large1.large1_pkey</td>
-      <td>20.7 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large5.large5_pkey</td>
-      <td>20.7 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large7.large7_pkey</td>
-      <td>20.5 MB</td>
-      <td>94.60</td>
-    </tr>
-    <tr>
       <td>public.large.large_col10</td>
-      <td>17.7 MB</td>
-      <td>99.73</td>
+      <td>72.5 MB</td>
+      <td>81.27</td>
+    </tr>
+    <tr>
+      <td>public.large.large_col5</td>
+      <td>70.9 MB</td>
+      <td>81.67</td>
     </tr>
     <tr>
       <td>public.large.large_col1</td>
-      <td>6.2 MB</td>
-      <td>99.85</td>
+      <td>328.0 KB</td>
+      <td>99.86</td>
     </tr>
     <tr>
       <td>public.large.large_updated_at</td>
-      <td>4.5 MB</td>
-      <td>99.80</td>
+      <td>224.0 KB</td>
+      <td>99.81</td>
     </tr>
     <tr>
       <td>public.large.large_created_at</td>
-      <td>4.5 MB</td>
-      <td>99.99</td>
+      <td>216.0 KB</td>
+      <td>99.83</td>
     </tr>
     <tr>
       <td>public.large.large_pkey</td>
-      <td>4.5 MB</td>
-      <td>99.84</td>
+      <td>208.0 KB</td>
+      <td>99.89</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_attrdef.pg_attrdef_adrelid_adnum_index</td>
-      <td>8.0 KB</td>
-      <td>96.30</td>
+      <td>pg_catalog.pg_proc.pg_proc_oid_index</td>
+      <td>24.0 KB</td>
+      <td>98.19</td>
     </tr>
     <tr>
-      <td>pg_toast.pg_toast_57630.pg_toast_57630_index</td>
-      <td>8.0 KB</td>
+      <td>pg_catalog.pg_type.pg_type_typname_nsp_index</td>
+      <td>24.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conrelid_contypid_conname_index</td>
+      <td>16.0 KB</td>
       <td>50.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_auth_members.pg_auth_members_role_member_index</td>
+      <td>pg_catalog.pg_opclass.pg_opclass_am_name_nsp_index</td>
+      <td>16.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_proc.pg_proc_proname_args_nsp_index</td>
+      <td>16.0 KB</td>
+      <td>92.31</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast.pg_cast_source_target_index</td>
+      <td>16.0 KB</td>
+      <td>75.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_aggregate.pg_aggregate_fnoid_index</td>
+      <td>16.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class.pg_class_relname_nsp_index</td>
       <td>8.0 KB</td>
-      <td>50.00</td>
+      <td>98.94</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_attribute.pg_attribute_relid_attnum_index</td>
+      <td>8.0 KB</td>
+      <td>99.73</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_oid_index</td>
+      <td>8.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_contypid_index</td>
+      <td>8.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conparentid_index</td>
+      <td>8.0 KB</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conname_nsp_index</td>
+      <td>8.0 KB</td>
+      <td>0.00</td>
     </tr>
   </tbody>
 </table>
-         <h2 id="is_ih">Top 50 in index hits</h2>
+         <h2 id="is_ih">Top 50 indexes read from memory</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -3794,254 +3502,184 @@ table {
   </thead>
   <tbody>
     <tr>
-      <td>public.large.large_created_at</td>
-      <td>44.6 GB</td>
-      <td>99.99</td>
+      <td>public.large.large_col5</td>
+      <td>315.9 MB</td>
+      <td>81.67</td>
     </tr>
     <tr>
       <td>public.large.large_col10</td>
-      <td>6.5 GB</td>
-      <td>99.73</td>
-    </tr>
-    <tr>
-      <td>public.large.large_col5</td>
-      <td>5.8 GB</td>
-      <td>83.12</td>
+      <td>314.7 MB</td>
+      <td>81.27</td>
     </tr>
     <tr>
       <td>public.large.large_col1</td>
-      <td>3.9 GB</td>
-      <td>99.85</td>
+      <td>233.9 MB</td>
+      <td>99.86</td>
     </tr>
     <tr>
       <td>public.large.large_pkey</td>
-      <td>2.7 GB</td>
-      <td>99.84</td>
+      <td>191.1 MB</td>
+      <td>99.89</td>
+    </tr>
+    <tr>
+      <td>public.large.large_created_at</td>
+      <td>124.0 MB</td>
+      <td>99.83</td>
     </tr>
     <tr>
       <td>public.large.large_updated_at</td>
-      <td>2.2 GB</td>
-      <td>99.80</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_pkey</td>
-      <td>448.2 MB</td>
-      <td>91.92</td>
-    </tr>
-    <tr>
-      <td>public.large7.large7_pkey</td>
-      <td>359.8 MB</td>
-      <td>94.60</td>
-    </tr>
-    <tr>
-      <td>public.large1.large1_pkey</td>
-      <td>359.6 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large2.large2_pkey</td>
-      <td>359.6 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large4.large4_pkey</td>
-      <td>359.6 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large3.large3_pkey</td>
-      <td>359.6 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large5.large5_pkey</td>
-      <td>359.5 MB</td>
-      <td>94.55</td>
-    </tr>
-    <tr>
-      <td>public.large.large_col0</td>
-      <td>253.5 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large1.large1_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large2.large2_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large7.large7_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large4.large4_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large3.large3_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large5.large5_col0</td>
-      <td>126.8 MB</td>
-      <td>100.00</td>
+      <td>117.3 MB</td>
+      <td>99.81</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_class.pg_class_oid_index</td>
-      <td>28.7 MB</td>
+      <td>6.9 MB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_attribute.pg_attribute_relid_attnum_index</td>
-      <td>12.0 MB</td>
-      <td>100.00</td>
+      <td>2.9 MB</td>
+      <td>99.73</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_index.pg_index_indexrelid_index</td>
-      <td>6.6 MB</td>
+      <td>1.7 MB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_namespace.pg_namespace_oid_index</td>
-      <td>6.0 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_db_role_setting.pg_db_role_setting_databaseid_rol_index</td>
-      <td>4.6 MB</td>
+      <td>1.6 MB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_proc.pg_proc_oid_index</td>
-      <td>3.6 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_database.pg_database_oid_index</td>
-      <td>3.4 MB</td>
-      <td>100.00</td>
+      <td>1.3 MB</td>
+      <td>98.19</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_class.pg_class_relname_nsp_index</td>
-      <td>2.4 MB</td>
-      <td>100.00</td>
+      <td>744.0 KB</td>
+      <td>98.94</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_authid.pg_authid_rolname_index</td>
-      <td>2.0 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_database.pg_database_datname_index</td>
-      <td>1.9 MB</td>
+      <td>pg_catalog.pg_type.pg_type_oid_index</td>
+      <td>592.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_statistic.pg_statistic_relid_att_inh_index</td>
-      <td>1.5 MB</td>
+      <td>576.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_index.pg_index_indrelid_index</td>
-      <td>1.3 MB</td>
+      <td>384.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_type.pg_type_oid_index</td>
-      <td>1.1 MB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_amproc.pg_amproc_fam_proc_index</td>
-      <td>920.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_statistic_ext.pg_statistic_ext_relid_index</td>
-      <td>736.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_opclass.pg_opclass_oid_index</td>
-      <td>544.0 KB</td>
+      <td>pg_catalog.pg_db_role_setting.pg_db_role_setting_databaseid_rol_index</td>
+      <td>280.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_operator.pg_operator_oid_index</td>
-      <td>504.0 KB</td>
-      <td>100.00</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_proc.pg_proc_proname_args_nsp_index</td>
-      <td>408.0 KB</td>
+      <td>240.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_amop.pg_amop_fam_strat_index</td>
-      <td>360.0 KB</td>
+      <td>208.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_rewrite.pg_rewrite_rel_rulename_index</td>
-      <td>312.0 KB</td>
-      <td>100.00</td>
+      <td>pg_catalog.pg_proc.pg_proc_proname_args_nsp_index</td>
+      <td>192.0 KB</td>
+      <td>92.31</td>
     </tr>
     <tr>
-      <td>pg_catalog.pg_namespace.pg_namespace_nspname_index</td>
-      <td>312.0 KB</td>
+      <td>pg_catalog.pg_database.pg_database_oid_index</td>
+      <td>184.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_amop.pg_amop_opr_fam_index</td>
-      <td>312.0 KB</td>
+      <td>160.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic_ext.pg_statistic_ext_relid_index</td>
+      <td>144.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid.pg_authid_rolname_index</td>
+      <td>144.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amproc.pg_amproc_fam_proc_index</td>
+      <td>136.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_namespace.pg_namespace_nspname_index</td>
+      <td>128.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_database.pg_database_datname_index</td>
+      <td>128.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator.pg_operator_oprname_l_r_n_index</td>
+      <td>112.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_rewrite.pg_rewrite_rel_rulename_index</td>
+      <td>104.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
       <td>pg_catalog.pg_auth_members.pg_auth_members_member_role_index</td>
-      <td>224.0 KB</td>
+      <td>96.0 KB</td>
       <td>100.00</td>
-    </tr>
-    <tr>
-      <td>public.large6.large6_col10</td>
-      <td>216.0 KB</td>
-      <td>0.03</td>
     </tr>
     <tr>
       <td>pg_toast.pg_toast_2618.pg_toast_2618_index</td>
-      <td>216.0 KB</td>
+      <td>72.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>public.large6.large6_col1</td>
-      <td>216.0 KB</td>
-      <td>0.06</td>
-    </tr>
-    <tr>
-      <td>pg_catalog.pg_operator.pg_operator_oprname_l_r_n_index</td>
-      <td>216.0 KB</td>
+      <td>pg_catalog.pg_opclass.pg_opclass_oid_index</td>
+      <td>72.0 KB</td>
       <td>100.00</td>
     </tr>
     <tr>
-      <td>public.large6.large6_col5</td>
-      <td>216.0 KB</td>
-      <td>0.06</td>
+      <td>pg_catalog.pg_cast.pg_cast_source_target_index</td>
+      <td>48.0 KB</td>
+      <td>75.00</td>
     </tr>
     <tr>
-      <td>public.large6.large6_updated_at</td>
-      <td>216.0 KB</td>
-      <td>0.21</td>
+      <td>pg_catalog.pg_authid.pg_authid_oid_index</td>
+      <td>48.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_tablespace.pg_tablespace_oid_index</td>
+      <td>40.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conrelid_contypid_conname_index</td>
+      <td>16.0 KB</td>
+      <td>50.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class.pg_class_tblspc_relfilenode_index</td>
+      <td>16.0 KB</td>
+      <td>100.00</td>
     </tr>
   </tbody>
 </table>
@@ -4063,13 +3701,13 @@ table {
   <tbody>
     <tr>
       <td>2021-07-24 12:38:20</td>
-      <td>2</td>
+      <td>0</td>
       <td>0</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>100</td>
-      <td>1.2</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -4077,22 +3715,20 @@ table {
       <div id="sqlio_stats" class="tabcontentSub">
          <ul>
             <li>
-               <a href="#ss_sr">Top 50 SQL  in shared blocks read</a>
+               <a href="#ss_sr">Top 50 SQL in disk reads</a>
             </li>
             <li>
-               <a href="#ss_sh">Top 50 SQL in shared blocks hit</a>
+               <a href="#ss_sh">Top 50 SQL in memory reads</a>
             </li>
             <li>
-               <a href="#ss_sw">Top 50 SQL in shared blocks written</a>
+               <a href="#ss_tr">Top 50 SQL in temp read</a>
             </li>
             <li>
-               <a href="#ss_tr">Top 50 SQL in temp blocks read</a>
+               <a href="#ss_tw">Top 50 SQL in temp written</a>
             </li>
-            <li>
-               <a href="#ss_tw">Top 50 SQL in temp blocks written</a>
-            </li>
+            
          </ul>
-         <h2 id="ss_sr">Top 50 SQL  in shared blocks read</h2>
+         <h2 id="ss_sr">Top 50 SQL in disk reads</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -4108,372 +3744,210 @@ table {
       <th>total calls</th>
       <th>ms per call</th>
       <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
       <th>query</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>postgres</td>
-      <td>-8055065560192043856</td>
-      <td>1.2 GB</td>
-      <td>26.4 GB</td>
-      <td>108.8 MB</td>
+      <td>9156502150409338362</td>
+      <td>141.9 MB</td>
+      <td>1.4 GB</td>
+      <td>2.6 MB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
-      <td>95.80</td>
-      <td>210902</td>
-      <td>2.20</td>
-      <td>1841.46</td>
-      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()</td>
+      <td>91.18</td>
+      <td>9848</td>
+      <td>2.42</td>
+      <td>1758.89</td>
+      <td>19.06</td>
+      <td>1.84</td>
+      <td>2.12</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
     </tr>
     <tr>
-      <td>postgres</td>
-      <td>6776736700761548478</td>
-      <td>140.2 MB</td>
-      <td>367.0 MB</td>
+      <td>statscollector</td>
+      <td>3565551731261737535</td>
+      <td>24.0 KB</td>
+      <td>496.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16231</td>
-      <td>2.74</td>
-      <td>141.72</td>
-      <td>select * from large5 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>5570667045389566826</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16229</td>
-      <td>2.85</td>
-      <td>141.70</td>
-      <td>select * from large4 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>6159519252493727236</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16228</td>
-      <td>2.79</td>
-      <td>141.69</td>
-      <td>select * from large3 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>1525015097275275443</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16228</td>
-      <td>2.92</td>
-      <td>141.69</td>
-      <td>select * from large2 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>1171537872203601827</td>
-      <td>140.2 MB</td>
-      <td>366.9 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16227</td>
-      <td>2.95</td>
-      <td>141.68</td>
-      <td>select * from large1 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-4728608081864256100</td>
-      <td>140.1 MB</td>
-      <td>367.2 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.39</td>
-      <td>16233</td>
-      <td>2.98</td>
-      <td>141.74</td>
-      <td>select * from large7 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>916962237401544286</td>
-      <td>138.7 MB</td>
-      <td>368.6 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.66</td>
-      <td>16231</td>
-      <td>2.99</td>
-      <td>141.72</td>
-      <td>select * from large6 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>4913789352928063626</td>
-      <td>7.5 MB</td>
-      <td>12.2 TB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.00</td>
-      <td>16231</td>
-      <td>140.94</td>
-      <td>141.72</td>
-      <td>select col5 from large where col5 = ( select col5 from large where created_at between now()- interval $1 and now()- interval $2 order by random() limit $3 )</td>
-    </tr>
-  </tbody>
-</table>
-         <h2 id="ss_sh">Top 50 SQL in shared blocks hit</h2>
-         <a href="#overview">[back to menu]</a>
-         <table border="1" class="dataframe tftable">
-  <thead>
-    <tr style="text-align: right;">
-      <th>username</th>
-      <th>queryid</th>
-      <th>total shared blocks hit</th>
-      <th>total shared blocks read</th>
-      <th>total shared blocks written</th>
-      <th>total temp blocks read</th>
-      <th>total temp blocks written</th>
-      <th>block hit ratio (%)</th>
-      <th>total calls</th>
-      <th>ms per call</th>
-      <th>calls/second</th>
-      <th>query</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>postgres</td>
-      <td>4913789352928063626</td>
-      <td>12.2 TB</td>
-      <td>7.5 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.00</td>
-      <td>16231</td>
-      <td>140.94</td>
-      <td>141.72</td>
-      <td>select col5 from large where col5 = ( select col5 from large where created_at between now()- interval $1 and now()- interval $2 order by random() limit $3 )</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-8055065560192043856</td>
-      <td>26.4 GB</td>
-      <td>1.2 GB</td>
-      <td>108.8 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>95.80</td>
-      <td>210902</td>
-      <td>2.20</td>
-      <td>1841.46</td>
-      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>916962237401544286</td>
-      <td>368.6 MB</td>
-      <td>138.7 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.66</td>
-      <td>16231</td>
-      <td>2.99</td>
-      <td>141.72</td>
-      <td>select * from large6 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-4728608081864256100</td>
-      <td>367.2 MB</td>
-      <td>140.1 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.39</td>
-      <td>16233</td>
-      <td>2.98</td>
-      <td>141.74</td>
-      <td>select * from large7 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>6776736700761548478</td>
-      <td>367.0 MB</td>
-      <td>140.2 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16231</td>
-      <td>2.74</td>
-      <td>141.72</td>
-      <td>select * from large5 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>5570667045389566826</td>
-      <td>366.9 MB</td>
-      <td>140.2 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16229</td>
-      <td>2.85</td>
-      <td>141.70</td>
-      <td>select * from large4 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>6159519252493727236</td>
-      <td>366.9 MB</td>
-      <td>140.2 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16228</td>
-      <td>2.79</td>
-      <td>141.69</td>
-      <td>select * from large3 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>1525015097275275443</td>
-      <td>366.9 MB</td>
-      <td>140.2 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16228</td>
-      <td>2.92</td>
-      <td>141.69</td>
-      <td>select * from large2 where id=$1</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>1171537872203601827</td>
-      <td>366.9 MB</td>
-      <td>140.2 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>72.35</td>
-      <td>16227</td>
-      <td>2.95</td>
-      <td>141.68</td>
-      <td>select * from large1 where id=$1</td>
+      <td>95.38</td>
+      <td>1</td>
+      <td>17.00</td>
+      <td>0.18</td>
+      <td>62.00</td>
+      <td>3.00</td>
+      <td>5.34</td>
+      <td>select $1 capture_version, * from \n\t\t\t\t(select \n\t\t\t\t\tb.*,\n\t\t\t\t\ta.heap_blks_read,\n\t\t\t\t\ta.heap_blks_hit,\n\t\t\t\t\ta.idx_blks_read,\n\t\t\t\t\ta.idx_blks_hit,\n\t\t\t\t\ta.toast_blks_read,\n\t\t\t\t\ta.toast_blks_hit,\n\t\t\t\t\ta.tidx_blks_read,\n\t\t\t\t\ta.tidx_blks_hit\n\t\t\t\t\tfrom pg_statio_all_tables a, pg_stat_all_tables b \n\t\t\t\t\twhere a.relid = b.relid and a.schemaname = b.schemaname and a.relname = b.relname) as table_stats</td>
     </tr>
     <tr>
       <td>statscollector</td>
       <td>6215423120413141912</td>
-      <td>53.3 MB</td>
+      <td>8.0 KB</td>
+      <td>13.4 MB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
+      <td>99.94</td>
+      <td>1</td>
+      <td>2.00</td>
+      <td>0.18</td>
+      <td>1713.00</td>
+      <td>1.00</td>
+      <td>1.02</td>
+      <td>select  $1 capture_version, * from\n\t\t\t\t\t(select \n\t\t\t\t\t  d.conname,\n\t\t\t\t\t  b.schemaname,\n                      b.relid,\n                      b.indexrelid,\n\t\t\t\t\t  b.relname,\n\t\t\t\t\t  b.indexrelname,\n\t\t\t\t\t  b.idx_scan, \n\t\t\t\t\t  b.idx_tup_read,\n\t\t\t\t\t  b.idx_tup_fetch,\n\t\t\t\t\t  a.idx_blks_read, \n\t\t\t\t\t  a.idx_blks_hit, \n\t\t\t\t\t  c.indisunique, \n\t\t\t\t\t  c.indisprimary, \n\t\t\t\t\t  c.indisvalid, \n\t\t\t\t\t  c.indkey::text as indkey\n\t\t\t\t\t  from pg_statio_all_indexes a, pg_index c, pg_stat_all_indexes b full outer join pg_catalog.pg_constraint d on d.conindid=b.indexrelid \n\t\t\t\t\t  where c.indrelid=a.relid \n\t\t\t\t\t  and c.indexrelid=a.indexrelid \n\t\t\t\t\t  and a.relid = b.relid \n\t\t\t\t\t  and a.schemaname = b.schemaname \n\t\t\t\t\t  and a.relname = b.relname \n\t\t\t\t\t  and a.indexrelname = b.indexrelname \n\t\t\t\t\t  and a.indexrelid=b.indexrelid) as index_stats</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ss_sh">Top 50 SQL in blocks read from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks read</th>
+      <th>total shared blocks written</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>postgres</td>
+      <td>9156502150409338362</td>
+      <td>1.4 GB</td>
+      <td>141.9 MB</td>
+      <td>2.6 MB</td>
       <td>0.0 bytes</td>
-      <td>100.00</td>
-      <td>3</td>
-      <td>2.67</td>
-      <td>0.03</td>
+      <td>0.0 bytes</td>
+      <td>91.18</td>
+      <td>9848</td>
+      <td>2.42</td>
+      <td>1758.89</td>
+      <td>19.06</td>
+      <td>1.84</td>
+      <td>2.12</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>6215423120413141912</td>
+      <td>13.4 MB</td>
+      <td>8.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>99.94</td>
+      <td>1</td>
+      <td>2.00</td>
+      <td>0.18</td>
+      <td>1713.00</td>
+      <td>1.00</td>
+      <td>1.02</td>
       <td>select  $1 capture_version, * from\n\t\t\t\t\t(select \n\t\t\t\t\t  d.conname,\n\t\t\t\t\t  b.schemaname,\n                      b.relid,\n                      b.indexrelid,\n\t\t\t\t\t  b.relname,\n\t\t\t\t\t  b.indexrelname,\n\t\t\t\t\t  b.idx_scan, \n\t\t\t\t\t  b.idx_tup_read,\n\t\t\t\t\t  b.idx_tup_fetch,\n\t\t\t\t\t  a.idx_blks_read, \n\t\t\t\t\t  a.idx_blks_hit, \n\t\t\t\t\t  c.indisunique, \n\t\t\t\t\t  c.indisprimary, \n\t\t\t\t\t  c.indisvalid, \n\t\t\t\t\t  c.indkey::text as indkey\n\t\t\t\t\t  from pg_statio_all_indexes a, pg_index c, pg_stat_all_indexes b full outer join pg_catalog.pg_constraint d on d.conindid=b.indexrelid \n\t\t\t\t\t  where c.indrelid=a.relid \n\t\t\t\t\t  and c.indexrelid=a.indexrelid \n\t\t\t\t\t  and a.relid = b.relid \n\t\t\t\t\t  and a.schemaname = b.schemaname \n\t\t\t\t\t  and a.relname = b.relname \n\t\t\t\t\t  and a.indexrelname = b.indexrelname \n\t\t\t\t\t  and a.indexrelid=b.indexrelid) as index_stats</td>
     </tr>
     <tr>
       <td>statscollector</td>
       <td>3565551731261737535</td>
-      <td>1.5 MB</td>
+      <td>496.0 KB</td>
+      <td>24.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.00</td>
-      <td>3</td>
-      <td>12.00</td>
-      <td>0.03</td>
+      <td>95.38</td>
+      <td>1</td>
+      <td>17.00</td>
+      <td>0.18</td>
+      <td>62.00</td>
+      <td>3.00</td>
+      <td>5.34</td>
       <td>select $1 capture_version, * from \n\t\t\t\t(select \n\t\t\t\t\tb.*,\n\t\t\t\t\ta.heap_blks_read,\n\t\t\t\t\ta.heap_blks_hit,\n\t\t\t\t\ta.idx_blks_read,\n\t\t\t\t\ta.idx_blks_hit,\n\t\t\t\t\ta.toast_blks_read,\n\t\t\t\t\ta.toast_blks_hit,\n\t\t\t\t\ta.tidx_blks_read,\n\t\t\t\t\ta.tidx_blks_hit\n\t\t\t\t\tfrom pg_statio_all_tables a, pg_stat_all_tables b \n\t\t\t\t\twhere a.relid = b.relid and a.schemaname = b.schemaname and a.relname = b.relname) as table_stats</td>
     </tr>
     <tr>
       <td>statscollector</td>
-      <td>387979678266121443</td>
-      <td>784.0 KB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.00</td>
-      <td>3</td>
-      <td>1.33</td>
-      <td>0.03</td>
-      <td>select $1 capture_version, wait_event, wait_event_type, datid, datname, query from pg_stat_activity where state=$2</td>
-    </tr>
-    <tr>
-      <td>statscollector</td>
       <td>5778854655118074406</td>
-      <td>432.0 KB</td>
+      <td>176.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>100.00</td>
-      <td>27</td>
+      <td>11</td>
       <td>0.00</td>
-      <td>0.24</td>
+      <td>1.96</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
       <td>select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=$1</td>
     </tr>
     <tr>
       <td>statscollector</td>
       <td>4427547915007460681</td>
-      <td>168.0 KB</td>
+      <td>56.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>100.00</td>
-      <td>3</td>
-      <td>8.00</td>
-      <td>0.03</td>
+      <td>1</td>
+      <td>11.00</td>
+      <td>0.18</td>
+      <td>7.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
       <td>select \n    $1 capture_version, \n    current_database(), \n    pg_is_in_recovery() standby, \n    age(b.datfrozenxid) oldest_transaction_age, \n    * \nfrom pg_stat_database a, pg_database b \nwhere a.datid=b.oid</td>
     </tr>
     <tr>
       <td>statscollector</td>
       <td>-529842715880601000</td>
-      <td>48.0 KB</td>
+      <td>16.0 KB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
       <td>100.00</td>
-      <td>3</td>
-      <td>0.33</td>
-      <td>0.03</td>
+      <td>1</td>
+      <td>5.00</td>
+      <td>0.18</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
       <td>select $1 capture_version,  * from \n\t\t\t\t(select \n\t\t\t\t\tb.usename username,\n\t\t\t\t\ta.userid,\n\t\t\t\t\ta.queryid,\n\t\t\t\t\ta.shared_blks_read, \n\t\t\t\t\ta.shared_blks_hit,\n\t\t\t\t\ta.shared_blks_written,\n\t\t\t\t\ta.shared_blks_dirtied,\n                    a.temp_blks_read,\n                    a.temp_blks_written,\n                    a.blk_read_time,\n                    a.blk_write_time,\n                    a.rows,\n                    a.min_time,\n                    a.max_time,\n                    a.stddev_time,\n\t\t\t\t\ta.calls,\n\t\t\t\t\ta.total_time,\n                    a.query\n\t\t\t\tfrom pg_stat_statements a , pg_user b\n\t\t\t\twhere a.userid = b.usesysid\n\t\t\t\tand a.dbid = ( select oid from pg_database where datname = current_database() )\n\t\t\t\t) as pg_stat_statements where calls > $2</td>
     </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>387979678266121443</td>
+      <td>8.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>0.18</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select $1 capture_version, wait_event, wait_event_type, datid, datname, query from pg_stat_activity where state=$2</td>
+    </tr>
   </tbody>
 </table>
-         <h2 id="ss_sw">Top 50 SQL in shared blocks written</h2>
-         <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
     <tr style="text-align: right;">
@@ -4488,27 +3962,33 @@ table {
       <th>total calls</th>
       <th>ms per call</th>
       <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
       <th>query</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>postgres</td>
-      <td>-8055065560192043856</td>
-      <td>108.8 MB</td>
-      <td>26.4 GB</td>
-      <td>1.2 GB</td>
+      <td>9156502150409338362</td>
+      <td>2.6 MB</td>
+      <td>1.4 GB</td>
+      <td>141.9 MB</td>
       <td>0.0 bytes</td>
       <td>0.0 bytes</td>
-      <td>95.8</td>
-      <td>210902</td>
-      <td>2.2</td>
-      <td>1841.46</td>
-      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()</td>
+      <td>91.18</td>
+      <td>9848</td>
+      <td>2.42</td>
+      <td>1758.89</td>
+      <td>19.06</td>
+      <td>1.84</td>
+      <td>2.12</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
     </tr>
   </tbody>
 </table>
-         <h2 id="ss_tr">Top 50 SQL in temp blocks read</h2>
+         <h2 id="ss_tr">Top 50 SQL in temp read</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -4524,69 +4004,16 @@ table {
       <th>total calls</th>
       <th>ms per call</th>
       <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
       <th>query</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>postgres</td>
-      <td>3769709523988832306</td>
-      <td>11.0 GB</td>
-      <td>11.0 GB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>SELECT c.relname, count(*)*$1/$2/$3 AS "mb_in_cache"\n             FROM pg_buffercache b INNER JOIN pg_class c\n             ON b.relfilenode = pg_relation_filenode(c.oid) AND\n                b.reldatabase IN ($4, (SELECT oid FROM pg_database\n                                      WHERE datname = current_database()))\n             GROUP BY c.relname\n             ORDER BY 2 DESC\n             LIMIT $5</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>6188878222014935140</td>
-      <td>3.0 GB</td>
-      <td>3.0 GB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>SELECT c.relname, count(*) AS buffers\n             FROM pg_buffercache b INNER JOIN pg_class c\n             ON b.relfilenode = pg_relation_filenode(c.oid) AND\n                b.reldatabase IN ($1, (SELECT oid FROM pg_database\n                                      WHERE datname = current_database()))\n             GROUP BY c.relname\n             ORDER BY 2 DESC\n             LIMIT $2</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-6174455162307251109</td>
-      <td>203.8 MB</td>
-      <td>203.8 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>SELECT c.relname, count(*)*$1/$2/$3/$4 AS "gb_in_cache"\n             FROM pg_buffercache b INNER JOIN pg_class c\n             ON b.relfilenode = pg_relation_filenode(c.oid) AND\n                b.reldatabase IN ($5, (SELECT oid FROM pg_database\n                                      WHERE datname = current_database()))\n             GROUP BY c.relname\n             ORDER BY 2 DESC\n             LIMIT $6</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-7054290754289598551</td>
-      <td>190.8 MB</td>
-      <td>190.8 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>select count(*)*$1/$2/$3/$4 from pg_buffercache</td>
-    </tr>
   </tbody>
 </table>
-         <h2 id="ss_tw">Top 50 SQL in temp blocks written</h2>
+         <h2 id="ss_tw">Top 50 SQL in temp written</h2>
          <a href="#overview">[back to menu]</a>
          <table border="1" class="dataframe tftable">
   <thead>
@@ -4604,76 +4031,16 @@ table {
       <th>total calls</th>
       <th>ms per call</th>
       <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
       <th>query</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>postgres</td>
-      <td>3769709523988832306</td>
-      <td>11.0 GB</td>
-      <td>11.0 GB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>11.0 GB</td>
-      <td>11.0 GB</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>SELECT c.relname, count(*)*$1/$2/$3 AS "mb_in_cache"\n             FROM pg_buffercache b INNER JOIN pg_class c\n             ON b.relfilenode = pg_relation_filenode(c.oid) AND\n                b.reldatabase IN ($4, (SELECT oid FROM pg_database\n                                      WHERE datname = current_database()))\n             GROUP BY c.relname\n             ORDER BY 2 DESC\n             LIMIT $5</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>6188878222014935140</td>
-      <td>3.0 GB</td>
-      <td>3.0 GB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>3.0 GB</td>
-      <td>3.0 GB</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>SELECT c.relname, count(*) AS buffers\n             FROM pg_buffercache b INNER JOIN pg_class c\n             ON b.relfilenode = pg_relation_filenode(c.oid) AND\n                b.reldatabase IN ($1, (SELECT oid FROM pg_database\n                                      WHERE datname = current_database()))\n             GROUP BY c.relname\n             ORDER BY 2 DESC\n             LIMIT $2</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-6174455162307251109</td>
-      <td>203.8 MB</td>
-      <td>203.8 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>203.8 MB</td>
-      <td>203.8 MB</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>SELECT c.relname, count(*)*$1/$2/$3/$4 AS "gb_in_cache"\n             FROM pg_buffercache b INNER JOIN pg_class c\n             ON b.relfilenode = pg_relation_filenode(c.oid) AND\n                b.reldatabase IN ($5, (SELECT oid FROM pg_database\n                                      WHERE datname = current_database()))\n             GROUP BY c.relname\n             ORDER BY 2 DESC\n             LIMIT $6</td>
-    </tr>
-    <tr>
-      <td>postgres</td>
-      <td>-7054290754289598551</td>
-      <td>190.8 MB</td>
-      <td>190.8 MB</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>0.0 bytes</td>
-      <td>190.8 MB</td>
-      <td>190.8 MB</td>
-      <td>100.0</td>
-      <td>0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>select count(*)*$1/$2/$3/$4 from pg_buffercache</td>
-    </tr>
   </tbody>
 </table>
+         
       </div>
    </div>
    </div>

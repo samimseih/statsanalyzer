@@ -252,52 +252,52 @@ table {
       <div id="table_stats" class="tabcontentSub">
          <ul>
             <li>
-               <a href="#ts_hr">Top {{ limit }} in heap reads</a>
+               <a href="#ts_hr">Top {{ limit }} tables read from disk</a>
             </li>
             <li>
-               <a href="#ts_ir">Top {{ limit }} in index reads</a>
+               <a href="#ts_ir">Top {{ limit }} tables with indexes read from disk</a>
             </li>
             <li>
-               <a href="#ts_tr">Top {{ limit }} in toast reads</a>
+               <a href="#ts_tr">Top {{ limit }} tables with toast read from disk</a>
             </li>
             <li>
-               <a href="#ts_tir">Top {{ limit }} in toast index reads</a>
+               <a href="#ts_tir">Top {{ limit }} tables with toast indexes from disk</a>
             </li>
             <li>
-               <a href="#ts_hh">Top {{ limit }} in heap hits</a>
+               <a href="#ts_hh">Top {{ limit }} tables read from memory</a>
             </li>
             <li>
-               <a href="#ts_ih">Top {{ limit }} in index hits</a>
+               <a href="#ts_ih">Top {{ limit }} tables with indexes read from memory</a>
             </li>
             <li>
-               <a href="#ts_th">Top {{ limit }} in toast hits</a>
+               <a href="#ts_th">Top {{ limit }} tables with toast read from memory</a>
             </li>
             <li>
-               <a href="#ts_tih">Top {{ limit }} in toast index hits</a>
+               <a href="#ts_tih">Top {{ limit }} tables with toast indexes from memory</a>
             </li>
          </ul>
-         <h2 id="ts_hr">Top {{ limit }} in heap reads</h2>
+         <h2 id="ts_hr">Top {{ limit }} tables read from disk</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_heap_reads }}
-         <h2 id="ts_ir">Top {{ limit }} in index reads</h2>
+         <h2 id="ts_ir">Top {{ limit }} tables with indexes read from disk</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_index_reads }}
-         <h2 id="ts_tr">Top {{ limit }} in toast reads</h2>
+         <h2 id="ts_tr">Top {{ limit }} tables with toast read from disk</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_toast_reads }}
-         <h2 id="ts_tir">Top {{ limit }} in toast index reads</h2>
+         <h2 id="ts_tir">Top {{ limit }} tables with toast indexes from disk</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_toast_index_reads }}
-         <h2 id="ts_hh">Top {{ limit }} in heap hits</h2>
+         <h2 id="ts_hh">Top {{ limit }} tables read from memory</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_heap_hits }}
-         <h2 id="ts_ih">Top {{ limit }} in index hits</h2>
+         <h2 id="ts_ih">Top {{ limit }} tables with indexes read from memory</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_index_hits }}
-         <h2 id="ts_th">Top {{ limit }} in toast hits</h2>
+         <h2 id="ts_th">Top {{ limit }} tables with toast read from memory</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_toast_hits }}
-         <h2 id="ts_tih">Top {{ limit }} in toast index hits</h2>
+         <h2 id="ts_tih">Top {{ limit }} tables with toast indexes from memory</h2>
          <a href="#overview">[back to menu]</a>
          {{ table_toast_index_hits }}
       </div>
@@ -307,10 +307,10 @@ table {
                <a href="#is_iu">Top {{ limit }} tables with most unused indexes</a>
             </li>         
             <li>
-               <a href="#is_ir">Top {{ limit }} in index reads</a>
+               <a href="#is_ir">Top {{ limit }} indexes read from disk</a>
             </li>
             <li>
-               <a href="#is_ih">Top {{ limit }} in index hits</a>
+               <a href="#is_ih">Top {{ limit }} indexes read from memory</a>
             </li>
          </ul>
          <h2 id="is_iu">Top {{ limit }} in most unused indexes</h2>
@@ -320,10 +320,10 @@ table {
             <summary>List of Unused Indexes ( Up to 500 displayed )</summary>
             {{ index_usage_2 }}
          </details>
-         <h2 id="is_ir">Top {{ limit }} in index reads</h2>
+         <h2 id="is_ir">Top {{ limit }} indexes read from disk</h2>
          <a href="#overview">[back to menu]</a>
          {{ index_reads }}
-         <h2 id="is_ih">Top {{ limit }} in index hits</h2>
+         <h2 id="is_ih">Top {{ limit }} indexes read from memory</h2>
          <a href="#overview">[back to menu]</a>
          {{ index_hits }}
       </div>
@@ -333,19 +333,16 @@ table {
       <div id="sqlio_stats" class="tabcontentSub">
          <ul>
             <li>
-               <a href="#ss_sr">Top {{ limit }} SQL  in shared blocks read</a>
+               <a href="#ss_sr">Top {{ limit }} SQL in disk reads</a>
             </li>
             <li>
-               <a href="#ss_sh">Top {{ limit }} SQL in shared blocks hit</a>
+               <a href="#ss_sh">Top {{ limit }} SQL in memory reads</a>
             </li>
             <li>
-               <a href="#ss_sw">Top {{ limit }} SQL in shared blocks written</a>
+               <a href="#ss_tr">Top {{ limit }} SQL in temp read</a>
             </li>
             <li>
-               <a href="#ss_tr">Top {{ limit }} SQL in temp blocks read</a>
-            </li>
-            <li>
-               <a href="#ss_tw">Top {{ limit }} SQL in temp blocks written</a>
+               <a href="#ss_tw">Top {{ limit }} SQL in temp written</a>
             </li>
             {% if sql_stats_wg %}
             <li>
@@ -353,19 +350,17 @@ table {
             </li>
             {% endif %}
          </ul>
-         <h2 id="ss_sr">Top {{ limit }} SQL  in shared blocks read</h2>
+         <h2 id="ss_sr">Top {{ limit }} SQL in disk reads</h2>
          <a href="#overview">[back to menu]</a>
          {{ sql_r_io_stats }}
-         <h2 id="ss_sh">Top {{ limit }} SQL in shared blocks hit</h2>
+         <h2 id="ss_sh">Top {{ limit }} SQL in reads from memory</h2>
          <a href="#overview">[back to menu]</a>
          {{ sql_h_io_stats }}
-         <h2 id="ss_sw">Top {{ limit }} SQL in shared blocks written</h2>
-         <a href="#overview">[back to menu]</a>
          {{ sql_w_io_stats }}
-         <h2 id="ss_tr">Top {{ limit }} SQL in temp blocks read</h2>
+         <h2 id="ss_tr">Top {{ limit }} SQL in temp read</h2>
          <a href="#overview">[back to menu]</a>
          {{sql_tr_stats}}
-         <h2 id="ss_tw">Top {{ limit }} SQL in temp blocks written</h2>
+         <h2 id="ss_tw">Top {{ limit }} SQL in temp written</h2>
          <a href="#overview">[back to menu]</a>
          {{sql_tw_stats}}
          {% if sql_stats_wg %}
