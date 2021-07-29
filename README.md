@@ -73,8 +73,35 @@ aws configure --profile snapshotprofile
 
 ```AWS Access Key ID``` and ```AWS Secret Access Key``` are the credentials to the AWS account that will be given read permissions to a SecretManager secret and read/write permissions to the S3 bucket.
 
+#### 3. Create AWS/SecretsManeger Secret
 
-#### 3. Generate Snapshots and Reports
+The SecretManager JSON should include the following fields:
+
+**username** : The username of the Database monitoring user. Created in Step 1
+**password** : The password of the Database monitoring user. Created in Step 1
+**hosts** : The list of hosts to run a snapshot for. Providing a list is useful if you wish to take snapshots for read-replicas.
+**snapshot_root**: The root to write the snapshot to. This value is only used by the **capture** utility.
+**database_list**: List of databases on the Postgres cluster to take snapshots for.
+
+```
+{
+  "username": "statscollector",
+  "password": "MySecretPassword",
+  "hosts": [
+    "demo1-instance-1.abcdefghijk.us-east-1.rds.amazonaws.com:5432"
+  ],
+  "snapshot_root": "tmp",
+  "database_list": [
+    "demodb1"
+  ]
+}
+```
+
+Below is a sample Secret
+
+![Alt text](images/secret.png?raw=true "Title")
+
+#### 4. Generate Snapshots and Reports
 There are multiple methods to generate snapshots and reports. These are the **snapper_rds** utility or **scheduled** using cron.
 
 [A sample report can be found here](https://htmlpreview.github.io/?https://github.com/samimseih/statsanalyzer/blob/master/samples/report.html)
@@ -84,17 +111,18 @@ There are multiple methods to generate snapshots and reports. These are the **sn
   <summary><b>snapper_rds</b> is intended to be used for real-time reporting. The utility generates snapshots and a report in a single run. This method is intended for a users who do not wish to maintain snapshots long term. snapper_rds currently only supports AWS/RDS insatnces.</summary>
 
 ```
-usage: snapper_rds [-h] [-i I] [-U U] [-P P] [--sa-snapper-snapshot-root SA_SNAPPER_SNAPSHOT_ROOT]
-                         [--sa-snapper-database-list SA_SNAPPER_DATABASE_LIST]
-                         [--sa-snapper-report-output-dir SA_SNAPPER_REPORT_OUTPUT_DIR]
-                         [--sa-snapper-no-snapshots SA_SNAPPER_NO_SNAPSHOTS]
-                         [--sa-snapper-snapshots-interval SA_SNAPPER_SNAPSHOTS_INTERVAL]
+usage: snapper_rds.py [-h] [-i I] [-U U] [-P P] [-S S] [--sa-snapper-snapshot-root SA_SNAPPER_SNAPSHOT_ROOT]
+                      [--sa-snapper-database-list SA_SNAPPER_DATABASE_LIST]
+                      [--sa-snapper-report-output-dir SA_SNAPPER_REPORT_OUTPUT_DIR] [--sa-snapper-no-snapshots SA_SNAPPER_NO_SNAPSHOTS]
+                      [--sa-snapper-snapshots-interval SA_SNAPPER_SNAPSHOTS_INTERVAL] [--sa-no-delete-snapshots SA_NO_DELETE_SNAPSHOTS]
+                      [--aws_region AWS_REGION]
 
 optional arguments:
   -h, --help            show this help message and exit
   -i I                  List of rds instances
   -U U                  stats database user. Default is the environment variable PGUSER
   -P P                  stats database user password. Default is the environment variable PGPASSWORD
+  -S S                  SecretManager Secret Name
   --sa-snapper-snapshot-root SA_SNAPPER_SNAPSHOT_ROOT, -r SA_SNAPPER_SNAPSHOT_ROOT
                         Snapshot Root path
   --sa-snapper-database-list SA_SNAPPER_DATABASE_LIST, -d SA_SNAPPER_DATABASE_LIST
@@ -105,22 +133,18 @@ optional arguments:
                         Number of snapshots. Default is 2
   --sa-snapper-snapshots-interval SA_SNAPPER_SNAPSHOTS_INTERVAL, -si SA_SNAPPER_SNAPSHOTS_INTERVAL
                         Interval between snapshots in seconds. Default is 30 seconds
+  --sa-no-delete-snapshots SA_NO_DELETE_SNAPSHOTS
+                        Delete the snapshots. Default is False
+  --aws_region AWS_REGION
+                        AWS Region of the SecretsManager. Default value: us-east-1
  ```
 For example, to report on the instances in the Aurora cluster "demo1". In this example, 6 snapshots will be taken at 10 second intervals. The output is the location of the HTML report summarizing the snapshots.
- 
- ![Alt text](images/rds_screenshot.png?raw=true "Title")
 
+ In this example, the AWS/SecretsManager secret called **prod/cluster1** is used for snapper_rds
+  
  ```
  export AWS_PROFILE=snapshotprofile
-./snapper_rds \
-    -i demo1-instance-1,demo1-instance-1-us-east-1a \
-    -U statscollector \
-    -P MySecretPassword \
-    -r /tmp \
-    -d demodb1 \
-    -o $HOME/Downloads \
-    -sn 6 \
-    -si 10
+./snapper_rds -S prod/cluster1
 ...
 ......
 .........
@@ -203,18 +227,18 @@ optional arguments:
                         database_list: A list of databases to capture.
                         snapshot_root: A path to write the snapshots to, such as an s3:// path or a local path.
                         {
-                          	"username": "MyMonitoringUser",
-                         	"password": "MySecretPassword",
-                          	"hosts": [
-                            	"hostname.writer.mydomain.com:5432",
-                            	"hostname.reader.mydomain.com:5432",
-                          	],
-                          	"snapshot_root": "s3://mysnapshotpath",
-                          	"database_list": [
-                            	"mydb1"
-                          	],
-                          	"engine_major_version": engineVersion,
-                          	"engine_type": "engineType"
+                            "username": "MyMonitoringUser",
+                          "password": "MySecretPassword",
+                            "hosts": [
+                              "hostname.writer.mydomain.com:5432",
+                              "hostname.reader.mydomain.com:5432",
+                            ],
+                            "snapshot_root": "s3://mysnapshotpath",
+                            "database_list": [
+                              "mydb1"
+                            ],
+                            "engine_major_version": engineVersion,
+                            "engine_type": "engineType"
                         }
   --aws_region AWS_REGION, -r AWS_REGION
                         AWS Region of the SecretsManager.

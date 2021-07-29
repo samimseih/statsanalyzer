@@ -9,6 +9,7 @@ import AWS
 from pandas import read_sql
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
+import sqlalchemy
 from datetime import timezone
 
 
@@ -23,7 +24,7 @@ def connect(connection_url, search_path, search_path_len, statement_timeout):
     # if the user did not pass a cert, disable CERT_REQUIRED mode
     if cadata is None:
         ssl_context.verify_mode = ssl.CERT_NONE
-        print("WARNING: SSL may not used for the connection!")
+        print("WARNING: SSL may not be used for the connection!")
     else:
         ssl_context.load_verify_locations(cadata)
 
@@ -159,8 +160,6 @@ def main(config=None):
     hosts = CONFIG["hosts"]
     snapshot_root = CONFIG["snapshot_root"]
     database_list = CONFIG["database_list"]
-    engine_major_version = int(CONFIG["engine_major_version"])
-    engine_type = CONFIG["engine_type"]
     # search path
     search_path_len = 0
     search_path = None
@@ -193,6 +192,32 @@ def main(config=None):
                     "password": CONFIG.get("password"),
                 }
             )
+
+    found_engine_types = []
+    found_major_versions = []
+    for c in connections:
+        _connection_ = connect(c, search_path, search_path_len, statement_timeout)
+        pd = read_sql("select version()", _connection_)
+        engine_major_version = int(pd.iloc[0]["version"].split(" ")[1].split(".")[0])
+
+        engine_type = "aurora-postgresql"
+
+        try:
+            read_sql("select aurora_version()", _connection_)
+        except sqlalchemy.exc.ProgrammingError as e:
+            """42883 is Postgres Error code for undefined_function """
+            if int(json.loads(str(e.__dict__["orig"]).replace("'", '"')).get('C')) == 42883:
+                engine_type = "postgresql"
+            else:
+                raise
+        found_engine_types.append(engine_type)
+        found_major_versions.append(engine_major_version)
+
+    etl = list(dict.fromkeys(found_engine_types))
+    mvl = list(dict.fromkeys(found_major_versions))
+
+    if len(etl) > 1 or len(mvl) > 1:
+        raise Exception("Snapshot configuration includes instances of different engine types or major versions")
 
     """
 	Load the SQL class based on engine type 
@@ -232,7 +257,6 @@ def main(config=None):
         statement_timeout,
         stats_to_run,
     )
-
 
 # Program Entry Point
 if __name__ == "__main__":
