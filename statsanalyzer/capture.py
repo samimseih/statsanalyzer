@@ -31,7 +31,10 @@ def connect(connection_url, search_path, search_path_len, statement_timeout):
     url = URL.create(**connection_url)
 
     # establish the connection
-    engine = create_engine(url, connect_args={"ssl_context": ssl_context})
+    if cadata is None:
+        engine = create_engine(url)
+    else:
+        engine = create_engine(url, connect_args={"ssl_context": ssl_context})
 
     connection = engine.connect()
 
@@ -81,7 +84,7 @@ def snapshot(
             """ Get the snapshot data in a single transaction """
             _connection_.execute("begin")
             snapshot_time = _connection_.execute(
-                "select now() as snapshot_time"
+                "select now() at time zone 'utc' as snapshot_time"
             ).fetchall()[0][0]
             snapshot_time_epoch = int(
                 snapshot_time.replace(tzinfo=timezone.utc).timestamp()
@@ -244,6 +247,8 @@ def main(config=None):
         sql_doc = sql.v13
     elif engine_major_version == 14:
         sql_doc = sql.v14
+    elif engine_major_version == 15:
+        sql_doc = sql.v15
 
     """
 	pass back the connections and the sql doc to process 

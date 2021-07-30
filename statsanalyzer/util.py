@@ -187,16 +187,6 @@ def get_stat(snapshot_path, stat, start_time, end_time):
 
         return df
 
-
-# Date functions
-
-
-def tz_to_notz(date):
-    return datetime.strptime(date, "%Y-%m-%d %H:%M:%S.%f%z").strftime(
-        "%Y-%m-%d %H:%M:%S"
-    )
-
-
 # Analytic Function Helpers
 
 

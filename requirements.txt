@@ -1,4 +1,4 @@
-boto3 
+aioboto3
 pandas 
 sqlalchemy==1.4 
 pg8000 

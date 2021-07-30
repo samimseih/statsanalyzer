@@ -87,13 +87,13 @@ def get_snapshot_details(snapshot_path, start_time, end_time, host, database):
     snapshot_detail_df["database"] = [database]
     snapshot_detail_df["total snapshots"] = [total_snapshots]
     first_snapshot = sqlite.execute_to_df(
-        "select tz_to_notz(min(snapshot_time)) from df", True
+        "select min(snapshot_time) from df", True
     )
     last_snapshot = sqlite.execute_to_df(
-        "select tz_to_notz(max(snapshot_time)) from df", True
+        "select max(snapshot_time) from df", True
     )
-    snapshot_detail_df["first snapshot"] = [first_snapshot]
-    snapshot_detail_df["last snapshot"] = [last_snapshot]
+    snapshot_detail_df["first snapshot (utc)"] = [first_snapshot]
+    snapshot_detail_df["last snapshot (utc)"] = [last_snapshot]
 
     ## check if stats were reset
     no_resets = sqlite.execute_to_df(
@@ -182,11 +182,11 @@ def get_snapshot_details(snapshot_path, start_time, end_time, host, database):
     snapshot_details_str = snapshot_detail_df.to_html(
         index=False,
         classes="tftable",
-        columns=["database", "total snapshots", "first snapshot", "last snapshot"],
+        columns=["database", "total snapshots", "first snapshot (utc)", "last snapshot (utc)"],
         escape=escape_html,
     )
     cluster_details_str = snapshot_detail_df.drop(
-        ["database", "total snapshots", "first snapshot", "last snapshot"], axis=1
+        ["database", "total snapshots", "first snapshot (utc)", "last snapshot (utc)"], axis=1
     ).to_html(index=False, classes="tftable", escape=escape_html)
 
     projected_columns = [
@@ -397,7 +397,7 @@ def get_sqlstats(snapshot_path, start_time, end_time, limit):
                     query
                 from df
                 group by username, queryid, query
-                order by 1 desc, 2 desc, 3 desc
+                order by 1 desc, 2 desc, 3 desc, 4 desc
             )
             where "total shared blocks read bytes" > 0 or "total shared blocks hit bytes" > 0 or
             "total shared blocks written bytes" > 0 or "total temp blocks read bytes" > 0 or
@@ -1047,7 +1047,7 @@ def get_bgwriter(snapshot_path, start_time, end_time, is_aurora):
     bgwriter_stats_df = sqlite.execute_to_df(
         """
         select 
-            tz_to_notz(max(stats_reset)) as "last reset",
+            max(stats_reset) as "last reset",
             cast(sum(delta_checkpoints_timed) as int) as "total checkpoints timed",
             cast(sum(delta_checkpoints_req) as int) as "total checkpoints requested",
             convert_bytes(blocks_to_bytes(sum(delta_buffers_checkpoint))) as "total written by checkpoint",
