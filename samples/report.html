@@ -1,1 +1,3895 @@
-/Users/simseih/Documents/demo1-instance-1.cixkq4i4few3.us-east-1.rds.amazonaws.com_demodb1_07_29_2021_21_34_00.html
+
+
+<!DOCTYPE html>
+<head>
+   <script>
+      function openSection(evt, sectionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+      
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+      
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+      
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(sectionName).style.display = "block";
+        evt.currentTarget.className += " active";
+      
+        document.getElementById('io_table_stats_btn').click();
+      } 
+      
+      function openSubSection(evt, sectionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+      
+        // Get all elements with class="tabcontentSub" and hide them
+        tabcontent = document.getElementsByClassName("tabcontentSub");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+      
+        // Get all elements with class="tablinksSub" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinksSub");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+      
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(sectionName).style.display = "block";
+        evt.currentTarget.className += " active";
+      } 
+      
+   </script>
+
+
+<style>.container:before {
+   content: "";
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   z-index: 1;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-attachment: fixed;
+   opacity: 0.1;
+}
+
+.content {
+   position: relative;
+   z-index: 1;
+}
+
+.tab {
+   overflow: hidden;
+   border: 1px solid #ccc;
+}
+
+
+/* Style the buttons that are used to open the tab content */
+
+.tab button {
+   background-color: inherit;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 14px 16px;
+   transition: 0.3s;
+   font-weight: bold;
+   font-size: medium;
+}
+
+
+/* Change background color of buttons on hover */
+
+.tab button:hover {
+   background-color: #ddd;
+}
+
+
+/* Create an active/current tablink class */
+
+.tab button.active {
+   background-color: #ccc;
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+   display: none;
+   padding: 6px 12px;
+   border-top: none;
+}
+
+.tftable th {
+   font-weight: bold;
+   font-size: 14px;
+   background-color: #D8D8D8;
+   border-width: 1px;
+   padding: 8px;
+   border-style: solid;
+   border-color: #008bb9;
+   text-align: left;
+}
+
+.tftable tr:hover {
+   font-weight: bold;
+   background-color: #e8f4f8;
+}
+
+.tftable2 td {
+   font-weight: bold;
+   font-size: 14px;
+   background-color: #ffcccb;
+   border-width: 1px;
+   padding: 8px;
+   border-style: none;
+   text-align: left;
+}
+
+h3 {
+   text-align: left;
+}
+
+table {
+   display: block;
+   overflow-x: auto;
+   white-space: wrap;
+}
+
+</style>
+
+
+</head>
+<body onload="document.getElementById('findings_btn').click();">
+   <div class="container">
+   <div class="content">
+   <div id="overview">
+      <div>
+         <h2><b>Postgres Database Report</b></h2>
+      </div>
+      <div>
+         <table>
+            <th><h3>Snapshot Details</h3></th>
+            <th><h3>Instance Details</h3></th>
+            <th><h3>Instance Role Timeline</h3></th>
+            <tr>
+               <td valign="top" style="white-space: nowrap;"><table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>database</th>
+      <th>total snapshots</th>
+      <th>first snapshot</th>
+      <th>last snapshot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>demodb1</td>
+      <td>2</td>
+      <td>2021-07-30 02:34:03</td>
+      <td>2021-07-30 02:34:12</td>
+    </tr>
+  </tbody>
+</table></td>
+               <td valign="top" style="white-space: nowrap;"><table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>aurora version</th>
+      <th>version</th>
+      <th>host</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4.1.0</td>
+      <td>PostgreSQL 12.6</td>
+      <td>demo1-instance-1.abcdfghijk.us-east-1.rds.amazonaws.com</td>
+    </tr>
+  </tbody>
+</table></td>
+               <td valign="top" style="white-space: nowrap;"><table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>change time</th>
+      <th>standby</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2021-07-30 02:34:03</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table></td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   <!-- Tab links -->
+   <div class="tab">
+      <button id="findings_btn" class="tablinks" onclick="openSection(event, 'findings')">Findings</button>
+      <button class="tablinks" onclick="openSection(event, 'io')">I/O</button>
+      <button class="tablinks" onclick="openSection(event, 'vacuum_efficiency')">Vacuum Efficiency</button>
+      <button class="tablinks" onclick="openSection(event, 'parameters')">Parameters</button>
+   </div>
+   <!-- Tab content -->
+   <div id="findings" class="tabcontent">
+         <ul>
+         <li>
+            <a href="#recom">Recommendation</a>
+         </li>
+         <li>
+            <a href="#we">Wait Events and Wait Event Types</a>
+         </li>
+         <li>
+            <a href="#dbio">Database I/O</a>
+         </li>
+         <li>
+            <a href="#topq">Top Query by I/O</a>
+         </li>
+      </ul>
+      <h3 id="recom" >Recommendations</h3>
+      <table border="1" class="dataframe tftable2">
+  <tbody>
+    <tr>
+      <td>database</td>
+      <td>Block hit ratio is below 99%. A low block hit ratio will contribute to more disk reads. It is recommended to review the shared_buffers parameter and top I/O bound SQLs for improvement</td>
+    </tr>
+  </tbody>
+</table>
+      <table border="1" class="dataframe tftable2">
+  <tbody>
+  </tbody>
+</table>
+      <table border="1" class="dataframe tftable2">
+  <tbody>
+    <tr>
+      <td>index</td>
+      <td>Unused indexes found.                 It is advised to drop unused indexes as they will contribute to unnecessary additional I/O.</td>
+    </tr>
+    <tr>
+      <td>index</td>
+      <td>Indexes with low buffer hit ratio found. See "I/O"->"by Index" for more details.</td>
+    </tr>
+  </tbody>
+</table>
+      <table border="1" class="dataframe tftable2">
+  <tbody>
+  </tbody>
+</table>
+      <a href="#overview">[back to menu]</a>
+      <h3 id="we" >Wait Events and Wait Event Types</h3>
+
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>total samples</th>
+      <th>wait event</th>
+      <th>wait event type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>20</td>
+      <td>DataFileRead</td>
+      <td>IO</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>XactSync</td>
+      <td>IO</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>CPU</td>
+      <td>CPU</td>
+    </tr>
+  </tbody>
+</table>
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>total samples</th>
+      <th>wait event type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>27</td>
+      <td>IO</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>CPU</td>
+    </tr>
+  </tbody>
+</table>
+      <a href="#overview">[back to menu]</a>
+      <h3 id="dbio" >Database I/O</h3>
+
+      <h4>
+         Breakdown of I/O contributed by the current sampled database and the other databases on the cluster. 
+         Review the "I/O" section for more details.
+      </h4>
+      <p style="color:red;">I/O for current database</p>
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>datname</th>
+      <th>datid</th>
+      <th>block hit ratio (%)</th>
+      <th>total heap read</th>
+      <th>total heap hit</th>
+      <th>% of total I/O</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>demodb1</td>
+      <td>16400</td>
+      <td>91.14</td>
+      <td>226.4 MB</td>
+      <td>2.3 GB</td>
+      <td>100.0</td>
+    </tr>
+  </tbody>
+</table>
+      <p style="color:red;">I/O for remaining database</p>
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>datname</th>
+      <th>datid</th>
+      <th>block hit ratio (%)</th>
+      <th>total heap read</th>
+      <th>total heap hit</th>
+      <th>% of total I/O</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rdsadmin</td>
+      <td>16384</td>
+      <td>100</td>
+      <td>0.0 bytes</td>
+      <td>1.6 MB</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>postgres</td>
+      <td>14313</td>
+      <td>100</td>
+      <td>0.0 bytes</td>
+      <td>616.0 KB</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>template0</td>
+      <td>14312</td>
+      <td>100</td>
+      <td>0.0 bytes</td>
+      <td>616.0 KB</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <td>template1</td>
+      <td>1</td>
+      <td>100</td>
+      <td>0.0 bytes</td>
+      <td>616.0 KB</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+      <a href="#overview">[back to menu]</a>
+      <h3 id="topq">Top Query by I/O</h3>
+
+      <h4>
+         List of queries by contribution to Read I/O. Review the "I/O"-> "By SQL" section for more details
+      </h4>
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total shared blocks read</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks written</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>postgres</td>
+      <td>9156502150409338362</td>
+      <td>217.6 MB</td>
+      <td>2.2 GB</td>
+      <td>4.1 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>91.14</td>
+      <td>15013</td>
+      <td>2.33</td>
+      <td>1771.03</td>
+      <td>19.09</td>
+      <td>1.86</td>
+      <td>2.04</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>6215423120413141912</td>
+      <td>0.0 bytes</td>
+      <td>13.4 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>12.00</td>
+      <td>0.12</td>
+      <td>1714.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select  $1 capture_version, * from\n\t\t\t\t\t(select \n\t\t\t\t\t  d.conname,\n\t\t\t\t\t  b.schemaname,\n                      b.relid,\n                      b.indexrelid,\n\t\t\t\t\t  b.relname,\n\t\t\t\t\t  b.indexrelname,\n\t\t\t\t\t  b.idx_scan, \n\t\t\t\t\t  b.idx_tup_read,\n\t\t\t\t\t  b.idx_tup_fetch,\n\t\t\t\t\t  a.idx_blks_read, \n\t\t\t\t\t  a.idx_blks_hit, \n\t\t\t\t\t  c.indisunique, \n\t\t\t\t\t  c.indisprimary, \n\t\t\t\t\t  c.indisvalid, \n\t\t\t\t\t  c.indkey::text as indkey\n\t\t\t\t\t  from pg_statio_all_indexes a, pg_index c, pg_stat_all_indexes b full outer join pg_catalog.pg_constraint d on d.conindid=b.indexrelid \n\t\t\t\t\t  where c.indrelid=a.relid \n\t\t\t\t\t  and c.indexrelid=a.indexrelid \n\t\t\t\t\t  and a.relid = b.relid \n\t\t\t\t\t  and a.schemaname = b.schemaname \n\t\t\t\t\t  and a.relname = b.relname \n\t\t\t\t\t  and a.indexrelname = b.indexrelname \n\t\t\t\t\t  and a.indexrelid=b.indexrelid) as index_stats</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>3565551731261737535</td>
+      <td>0.0 bytes</td>
+      <td>520.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>0.12</td>
+      <td>65.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select $1 capture_version, * from \n\t\t\t\t(select \n\t\t\t\t\tb.*,\n\t\t\t\t\ta.heap_blks_read,\n\t\t\t\t\ta.heap_blks_hit,\n\t\t\t\t\ta.idx_blks_read,\n\t\t\t\t\ta.idx_blks_hit,\n\t\t\t\t\ta.toast_blks_read,\n\t\t\t\t\ta.toast_blks_hit,\n\t\t\t\t\ta.tidx_blks_read,\n\t\t\t\t\ta.tidx_blks_hit\n\t\t\t\t\tfrom pg_statio_all_tables a, pg_stat_all_tables b \n\t\t\t\t\twhere a.relid = b.relid and a.schemaname = b.schemaname and a.relname = b.relname) as table_stats</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>5778854655118074406</td>
+      <td>0.0 bytes</td>
+      <td>144.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>9</td>
+      <td>0.00</td>
+      <td>1.06</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=$1</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>4427547915007460681</td>
+      <td>0.0 bytes</td>
+      <td>56.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>0.12</td>
+      <td>7.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select \n    $1 capture_version, \n    current_database(), \n    pg_is_in_recovery() standby, \n    age(b.datfrozenxid) oldest_transaction_age, \n    * \nfrom pg_stat_database a, pg_database b \nwhere a.datid=b.oid</td>
+    </tr>
+  </tbody>
+</table>
+   </div>
+   <div id="vacuum_efficiency" class="tabcontent">
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total vacuums</th>
+      <th>total manual vacuums</th>
+      <th>% of manual vacuum</th>
+      <th>total autovacuums</th>
+      <th>% of autovacuum</th>
+      <th>average dead rows</th>
+      <th>dead row ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+   </div>
+   <div id="parameters" class="tabcontent">
+      <ul>
+         <li>
+            <a href="#par">Parameters</a>
+         </li>
+         <li>
+            <a href="#par_tl">Changed Parameters Timeline</a>
+         </li>
+      </ul>
+      <h2 id="par">Parameters</h2>
+      <a href="#overview">[back to menu]</a>
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>name</th>
+      <th>setting</th>
+      <th>context</th>
+      <th>category</th>
+      <th>short_desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>autovacuum</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Starts the autovacuum subprocess.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_analyze_scale_factor</td>
+      <td>0.05</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Number of tuple inserts, updates, or deletes prior to analyze as a fraction of reltuples.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_analyze_threshold</td>
+      <td>50</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Minimum number of tuple inserts, updates, or deletes prior to analyze.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_freeze_max_age</td>
+      <td>200000000</td>
+      <td>postmaster</td>
+      <td>Autovacuum</td>
+      <td>Age at which to autovacuum a table to prevent transaction ID wraparound.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_max_workers</td>
+      <td>12</td>
+      <td>postmaster</td>
+      <td>Autovacuum</td>
+      <td>Sets the maximum number of simultaneously running autovacuum worker processes.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_multixact_freeze_max_age</td>
+      <td>400000000</td>
+      <td>postmaster</td>
+      <td>Autovacuum</td>
+      <td>Multixact age at which to autovacuum a table to prevent multixact wraparound.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_naptime</td>
+      <td>5</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Time to sleep between autovacuum runs.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_vacuum_cost_delay</td>
+      <td>5</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Vacuum cost delay in milliseconds, for autovacuum.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_vacuum_cost_limit</td>
+      <td>3000</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Vacuum cost amount available before napping, for autovacuum.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_vacuum_scale_factor</td>
+      <td>0.1</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Number of tuple updates or deletes prior to vacuum as a fraction of reltuples.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_vacuum_threshold</td>
+      <td>50</td>
+      <td>sighup</td>
+      <td>Autovacuum</td>
+      <td>Minimum number of tuple updates or deletes prior to vacuum.</td>
+    </tr>
+    <tr>
+      <td>DateStyle</td>
+      <td>ISO, MDY</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the display format for date and time values.</td>
+    </tr>
+    <tr>
+      <td>IntervalStyle</td>
+      <td>postgres</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the display format for interval values.</td>
+    </tr>
+    <tr>
+      <td>TimeZone</td>
+      <td>UTC</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the time zone for displaying and interpreting time stamps.</td>
+    </tr>
+    <tr>
+      <td>client_encoding</td>
+      <td>UTF8</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the client's character set encoding.</td>
+    </tr>
+    <tr>
+      <td>default_text_search_config</td>
+      <td>pg_catalog.simple</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets default text search configuration.</td>
+    </tr>
+    <tr>
+      <td>extra_float_digits</td>
+      <td>1</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the number of digits displayed for floating-point values.</td>
+    </tr>
+    <tr>
+      <td>lc_collate</td>
+      <td>en_US.UTF-8</td>
+      <td>internal</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Shows the collation order locale.</td>
+    </tr>
+    <tr>
+      <td>lc_ctype</td>
+      <td>en_US.UTF-8</td>
+      <td>internal</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Shows the character classification and case conversion locale.</td>
+    </tr>
+    <tr>
+      <td>lc_monetary</td>
+      <td>C</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the locale for formatting monetary amounts.</td>
+    </tr>
+    <tr>
+      <td>lc_numeric</td>
+      <td>C</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the locale for formatting numbers.</td>
+    </tr>
+    <tr>
+      <td>lc_time</td>
+      <td>C</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the locale for formatting date and time values.</td>
+    </tr>
+    <tr>
+      <td>server_encoding</td>
+      <td>UTF8</td>
+      <td>internal</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Sets the server (database) character set encoding.</td>
+    </tr>
+    <tr>
+      <td>timezone_abbreviations</td>
+      <td>Default</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Locale and Formatting</td>
+      <td>Selects a file of time zone abbreviations.</td>
+    </tr>
+    <tr>
+      <td>dynamic_library_path</td>
+      <td>$libdir</td>
+      <td>superuser</td>
+      <td>Client Connection Defaults / Other Defaults</td>
+      <td>Sets the path for dynamically loadable modules.</td>
+    </tr>
+    <tr>
+      <td>gin_fuzzy_search_limit</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Other Defaults</td>
+      <td>Sets the maximum allowed result for exact search by GIN.</td>
+    </tr>
+    <tr>
+      <td>tcp_keepalives_count</td>
+      <td>9</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Other Defaults</td>
+      <td>Maximum number of TCP keepalive retransmits.</td>
+    </tr>
+    <tr>
+      <td>tcp_keepalives_idle</td>
+      <td>7200</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Other Defaults</td>
+      <td>Time between issuing TCP keepalives.</td>
+    </tr>
+    <tr>
+      <td>tcp_keepalives_interval</td>
+      <td>75</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Other Defaults</td>
+      <td>Time between TCP keepalive retransmits.</td>
+    </tr>
+    <tr>
+      <td>tcp_user_timeout</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Other Defaults</td>
+      <td>TCP user timeout.</td>
+    </tr>
+    <tr>
+      <td>jit_provider</td>
+      <td>llvmjit</td>
+      <td>postmaster</td>
+      <td>Client Connection Defaults / Shared Library Preloading</td>
+      <td>JIT provider to use.</td>
+    </tr>
+    <tr>
+      <td>shared_preload_libraries</td>
+      <td>rdsutils,pg_stat_statements</td>
+      <td>postmaster</td>
+      <td>Client Connection Defaults / Shared Library Preloading</td>
+      <td>Lists shared libraries to preload into server.</td>
+    </tr>
+    <tr>
+      <td>bytea_output</td>
+      <td>hex</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the output format for bytea.</td>
+    </tr>
+    <tr>
+      <td>check_function_bodies</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Check function bodies during CREATE FUNCTION.</td>
+    </tr>
+    <tr>
+      <td>client_min_messages</td>
+      <td>notice</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the message levels that are sent to the client.</td>
+    </tr>
+    <tr>
+      <td>default_table_access_method</td>
+      <td>heap</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the default table access method for new tables.</td>
+    </tr>
+    <tr>
+      <td>default_transaction_deferrable</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the default deferrable status of new transactions.</td>
+    </tr>
+    <tr>
+      <td>default_transaction_isolation</td>
+      <td>read committed</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the transaction isolation level of each new transaction.</td>
+    </tr>
+    <tr>
+      <td>default_transaction_read_only</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the default read-only status of new transactions.</td>
+    </tr>
+    <tr>
+      <td>gin_pending_list_limit</td>
+      <td>4096</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the maximum size of the pending list for GIN index.</td>
+    </tr>
+    <tr>
+      <td>idle_in_transaction_session_timeout</td>
+      <td>20000</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the maximum allowed duration of any idling transaction.</td>
+    </tr>
+    <tr>
+      <td>lock_timeout</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the maximum allowed duration of any wait for a lock.</td>
+    </tr>
+    <tr>
+      <td>rds.enable_global_db_rpo</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Enables Aurora Global DB Recovery point objective enforcement feature.</td>
+    </tr>
+    <tr>
+      <td>rds.enable_global_db_rpo_abort_commits_at_rpo_limit</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Enable abort of transaction commits at RPO limit when 'managed RPO' is enabled.</td>
+    </tr>
+    <tr>
+      <td>rds.global_db_rpo</td>
+      <td>-1</td>
+      <td>sighup</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>(s) Recovery point objective threshold, in seconds, that blocks user commits when it is violated.</td>
+    </tr>
+    <tr>
+      <td>row_security</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Enable row security.</td>
+    </tr>
+    <tr>
+      <td>search_path</td>
+      <td>"$user", public</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the schema search order for names that are not schema-qualified.</td>
+    </tr>
+    <tr>
+      <td>session_replication_role</td>
+      <td>origin</td>
+      <td>rds_superuser</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the session's behavior for triggers and rewrite rules.</td>
+    </tr>
+    <tr>
+      <td>statement_timeout</td>
+      <td>10000</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the maximum allowed duration of any statement.</td>
+    </tr>
+    <tr>
+      <td>transaction_deferrable</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Whether to defer a read-only serializable transaction until it can be executed with no possible serialization failures.</td>
+    </tr>
+    <tr>
+      <td>transaction_isolation</td>
+      <td>read committed</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the current transaction's isolation level.</td>
+    </tr>
+    <tr>
+      <td>transaction_read_only</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets the current transaction's read-only status.</td>
+    </tr>
+    <tr>
+      <td>vacuum_cleanup_index_scale_factor</td>
+      <td>0.1</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Number of tuple inserts prior to index cleanup as a fraction of reltuples.</td>
+    </tr>
+    <tr>
+      <td>vacuum_freeze_min_age</td>
+      <td>50000000</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Minimum age at which VACUUM should freeze a table row.</td>
+    </tr>
+    <tr>
+      <td>vacuum_freeze_table_age</td>
+      <td>150000000</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Age at which VACUUM should scan whole table to freeze tuples.</td>
+    </tr>
+    <tr>
+      <td>vacuum_multixact_freeze_min_age</td>
+      <td>5000000</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Minimum age at which VACUUM should freeze a MultiXactId in a table row.</td>
+    </tr>
+    <tr>
+      <td>vacuum_multixact_freeze_table_age</td>
+      <td>150000000</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Multixact age at which VACUUM should scan whole table to freeze tuples.</td>
+    </tr>
+    <tr>
+      <td>xmlbinary</td>
+      <td>base64</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets how binary values are to be encoded in XML.</td>
+    </tr>
+    <tr>
+      <td>xmloption</td>
+      <td>content</td>
+      <td>user</td>
+      <td>Client Connection Defaults / Statement Behavior</td>
+      <td>Sets whether XML data in implicit parsing and serialization operations is to be considered as documents or content fragments.</td>
+    </tr>
+    <tr>
+      <td>authentication_timeout</td>
+      <td>60</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / Authentication</td>
+      <td>Sets the maximum allowed time to complete client authentication.</td>
+    </tr>
+    <tr>
+      <td>db_user_namespace</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / Authentication</td>
+      <td>Enables per-database user names.</td>
+    </tr>
+    <tr>
+      <td>krb_caseins_users</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / Authentication</td>
+      <td>Sets whether Kerberos and GSSAPI user names should be treated as case-insensitive.</td>
+    </tr>
+    <tr>
+      <td>krb_server_keyfile</td>
+      <td>/rdsdbdata/config/keytab</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / Authentication</td>
+      <td>Sets the location of the Kerberos server key file.</td>
+    </tr>
+    <tr>
+      <td>password_encryption</td>
+      <td>md5</td>
+      <td>user</td>
+      <td>Connections and Authentication / Authentication</td>
+      <td>Chooses the algorithm for encrypting passwords.</td>
+    </tr>
+    <tr>
+      <td>bonjour</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Enables advertising the server via Bonjour.</td>
+    </tr>
+    <tr>
+      <td>listen_addresses</td>
+      <td>*</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the host name or IP address(es) to listen to.</td>
+    </tr>
+    <tr>
+      <td>max_connections</td>
+      <td>5000</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the maximum number of concurrent connections.</td>
+    </tr>
+    <tr>
+      <td>port</td>
+      <td>5432</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the TCP port the server listens on.</td>
+    </tr>
+    <tr>
+      <td>rds.rds_superuser_reserved_connections</td>
+      <td>2</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the number of connection slots reserved for rds_superusers.</td>
+    </tr>
+    <tr>
+      <td>superuser_reserved_connections</td>
+      <td>3</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the number of connection slots reserved for superusers.</td>
+    </tr>
+    <tr>
+      <td>unix_socket_directories</td>
+      <td>/tmp</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the directories where Unix-domain sockets will be created.</td>
+    </tr>
+    <tr>
+      <td>unix_socket_group</td>
+      <td>rdsdb</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the owning group of the Unix-domain socket.</td>
+    </tr>
+    <tr>
+      <td>unix_socket_permissions</td>
+      <td>0706</td>
+      <td>postmaster</td>
+      <td>Connections and Authentication / Connection Settings</td>
+      <td>Sets the access permissions of the Unix-domain socket.</td>
+    </tr>
+    <tr>
+      <td>ssl</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Enables SSL connections.</td>
+    </tr>
+    <tr>
+      <td>ssl_ca_file</td>
+      <td>/rdsdbdata/rds-metadata/ca-cert.pem</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Location of the SSL certificate authority file.</td>
+    </tr>
+    <tr>
+      <td>ssl_cert_file</td>
+      <td>/rdsdbdata/rds-metadata/server-cert.pem</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Location of the SSL server certificate file.</td>
+    </tr>
+    <tr>
+      <td>ssl_ciphers</td>
+      <td>HIGH:MEDIUM:+3DES:!aNULL:!RC4</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Sets the list of allowed SSL ciphers.</td>
+    </tr>
+    <tr>
+      <td>ssl_ecdh_curve</td>
+      <td>prime256v1</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Sets the curve to use for ECDH.</td>
+    </tr>
+    <tr>
+      <td>ssl_key_file</td>
+      <td>/rdsdbdata/rds-metadata/server-key.pem</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Location of the SSL server private key file.</td>
+    </tr>
+    <tr>
+      <td>ssl_min_protocol_version</td>
+      <td>TLSv1.2</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Sets the minimum SSL/TLS protocol version to use.</td>
+    </tr>
+    <tr>
+      <td>ssl_passphrase_command_supports_reload</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Also use ssl_passphrase_command during server reload.</td>
+    </tr>
+    <tr>
+      <td>ssl_prefer_server_ciphers</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Connections and Authentication / SSL</td>
+      <td>Give priority to server ciphersuite order.</td>
+    </tr>
+    <tr>
+      <td>apg_buffer_invalid_lookup_strategy</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Customized Options</td>
+      <td>Use the lookup strategy to invalidate the buffers</td>
+    </tr>
+    <tr>
+      <td>apg_enable_batch_mode_function_execution</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Customized Options</td>
+      <td>Enables batch-mode functions to process sets of rows at a time.</td>
+    </tr>
+    <tr>
+      <td>pg_stat_statements.max</td>
+      <td>5000</td>
+      <td>postmaster</td>
+      <td>Customized Options</td>
+      <td>Sets the maximum number of statements tracked by pg_stat_statements.</td>
+    </tr>
+    <tr>
+      <td>pg_stat_statements.save</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Customized Options</td>
+      <td>Save pg_stat_statements statistics across server shutdowns.</td>
+    </tr>
+    <tr>
+      <td>pg_stat_statements.track</td>
+      <td>top</td>
+      <td>superuser</td>
+      <td>Customized Options</td>
+      <td>Selects which statements are tracked by pg_stat_statements.</td>
+    </tr>
+    <tr>
+      <td>pg_stat_statements.track_utility</td>
+      <td>on</td>
+      <td>superuser</td>
+      <td>Customized Options</td>
+      <td>Selects whether utility commands are tracked by pg_stat_statements.</td>
+    </tr>
+    <tr>
+      <td>rds.extensions</td>
+      <td>address_standardizer, address_standardizer_data_us, apg_plan_mgmt, aurora_stat_utils, amcheck, aws_commons, aws_ml, aws_s3, aws_lambda, bloom, btree_gin, btree_gist, citext, cube, dblink, dict_int, dict_xsyn, earthdistance, fuzzystrmatch, hll, hstore, hstore_plperl, intagg, intarray, ip4r, isn, jsonb_plperl, log_fdw, ltree, oracle_fdw, orafce, pgaudit, pgcrypto, pglogical, pgrouting, pgrowlocks, pgstattuple, pgtap, pg_bigm, pg_buffercache, pg_cron, pg_freespacemap, pg_hint_plan, pg_partman, pg_prewarm, pg_proctab, pg_repack, pg_similarity, pg_stat_statements, pg_trgm, pg_visibility, plcoffee, plls, plperl, plpgsql, plprofiler, pltcl, plv8, postgis, postgis_tiger_geocoder, postgis_raster, postgis_topology, postgres_fdw, prefix, rdkit, sslinfo, tablefunc, test_parser, tsm_system_rows, tsm_system_time, unaccent, uuid-ossp</td>
+      <td>superuser</td>
+      <td>Customized Options</td>
+      <td>Extensions whitelisted for use by rds_superuser.</td>
+    </tr>
+    <tr>
+      <td>rds.force_admin_logging_level</td>
+      <td>disabled</td>
+      <td>sighup</td>
+      <td>Customized Options</td>
+      <td>Emit log messages from the RDS admin user irrespective of other logging configuration.</td>
+    </tr>
+    <tr>
+      <td>rds.force_autovacuum_logging_level</td>
+      <td>info</td>
+      <td>sighup</td>
+      <td>Customized Options</td>
+      <td>Emit autovacuum log messages irrespective of other logging configuration.</td>
+    </tr>
+    <tr>
+      <td>rds.internal_databases</td>
+      <td>rdsadmin</td>
+      <td>superuser</td>
+      <td>Customized Options</td>
+      <td>Special RDS internal use databases that are protected.</td>
+    </tr>
+    <tr>
+      <td>rds.logical_replication</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Customized Options</td>
+      <td>Enables logical decoding.</td>
+    </tr>
+    <tr>
+      <td>rds.restrict_password_commands</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Customized Options</td>
+      <td>Restricts password-related commands to members of rds_password.</td>
+    </tr>
+    <tr>
+      <td>rds.superuser_variables</td>
+      <td>session_replication_role</td>
+      <td>superuser</td>
+      <td>Customized Options</td>
+      <td>Variables whitelisted for modification by rds_superuser.</td>
+    </tr>
+    <tr>
+      <td>rds.tablespace_path_prefix</td>
+      <td>/rdsdbdata/db/base/tablespace</td>
+      <td>postmaster</td>
+      <td>Customized Options</td>
+      <td>Location of tablespace directories.</td>
+    </tr>
+    <tr>
+      <td>allow_system_table_mods</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Developer Options</td>
+      <td>Allows modifications of the structure of system tables.</td>
+    </tr>
+    <tr>
+      <td>ignore_checksum_failure</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Developer Options</td>
+      <td>Continues processing after a checksum failure.</td>
+    </tr>
+    <tr>
+      <td>ignore_system_indexes</td>
+      <td>off</td>
+      <td>backend</td>
+      <td>Developer Options</td>
+      <td>Disables reading from system indexes.</td>
+    </tr>
+    <tr>
+      <td>jit_debugging_support</td>
+      <td>off</td>
+      <td>superuser-backend</td>
+      <td>Developer Options</td>
+      <td>Register JIT compiled function with debugger.</td>
+    </tr>
+    <tr>
+      <td>jit_dump_bitcode</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Developer Options</td>
+      <td>Write out LLVM bitcode to facilitate JIT debugging.</td>
+    </tr>
+    <tr>
+      <td>jit_expressions</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Developer Options</td>
+      <td>Allow JIT compilation of expressions.</td>
+    </tr>
+    <tr>
+      <td>jit_profiling_support</td>
+      <td>off</td>
+      <td>superuser-backend</td>
+      <td>Developer Options</td>
+      <td>Register JIT compiled function with perf profiler.</td>
+    </tr>
+    <tr>
+      <td>jit_tuple_deforming</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Developer Options</td>
+      <td>Allow JIT compilation of tuple deforming.</td>
+    </tr>
+    <tr>
+      <td>post_auth_delay</td>
+      <td>0</td>
+      <td>backend</td>
+      <td>Developer Options</td>
+      <td>Waits N seconds on connection startup after authentication.</td>
+    </tr>
+    <tr>
+      <td>pre_auth_delay</td>
+      <td>0</td>
+      <td>sighup</td>
+      <td>Developer Options</td>
+      <td>Waits N seconds on connection startup before authentication.</td>
+    </tr>
+    <tr>
+      <td>trace_notify</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Developer Options</td>
+      <td>Generates debugging output for LISTEN and NOTIFY.</td>
+    </tr>
+    <tr>
+      <td>trace_recovery_messages</td>
+      <td>log</td>
+      <td>sighup</td>
+      <td>Developer Options</td>
+      <td>Enables logging of recovery-related debugging information.</td>
+    </tr>
+    <tr>
+      <td>trace_sort</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Developer Options</td>
+      <td>Emit information about resource usage in sorting.</td>
+    </tr>
+    <tr>
+      <td>zero_damaged_pages</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Developer Options</td>
+      <td>Continues processing past damaged page headers.</td>
+    </tr>
+    <tr>
+      <td>data_sync_retry</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Error Handling</td>
+      <td>Whether to continue running after a failure to sync data files.</td>
+    </tr>
+    <tr>
+      <td>exit_on_error</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Error Handling</td>
+      <td>Terminate session on any error.</td>
+    </tr>
+    <tr>
+      <td>restart_after_crash</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Error Handling</td>
+      <td>Reinitialize server after backend crash.</td>
+    </tr>
+    <tr>
+      <td>config_file</td>
+      <td>/rdsdbdata/config/postgresql.conf</td>
+      <td>postmaster</td>
+      <td>File Locations</td>
+      <td>Sets the server's main configuration file.</td>
+    </tr>
+    <tr>
+      <td>data_directory</td>
+      <td>/rdsdbdata/db</td>
+      <td>postmaster</td>
+      <td>File Locations</td>
+      <td>Sets the server's data directory.</td>
+    </tr>
+    <tr>
+      <td>hba_file</td>
+      <td>/rdsdbdata/config/pg_hba.conf</td>
+      <td>postmaster</td>
+      <td>File Locations</td>
+      <td>Sets the server's "hba" configuration file.</td>
+    </tr>
+    <tr>
+      <td>ident_file</td>
+      <td>/rdsdbdata/config/pg_ident.conf</td>
+      <td>postmaster</td>
+      <td>File Locations</td>
+      <td>Sets the server's "ident" configuration file.</td>
+    </tr>
+    <tr>
+      <td>deadlock_timeout</td>
+      <td>1000</td>
+      <td>superuser</td>
+      <td>Lock Management</td>
+      <td>Sets the time to wait on a lock before checking for deadlock.</td>
+    </tr>
+    <tr>
+      <td>max_locks_per_transaction</td>
+      <td>64</td>
+      <td>postmaster</td>
+      <td>Lock Management</td>
+      <td>Sets the maximum number of locks per transaction.</td>
+    </tr>
+    <tr>
+      <td>max_pred_locks_per_page</td>
+      <td>2</td>
+      <td>sighup</td>
+      <td>Lock Management</td>
+      <td>Sets the maximum number of predicate-locked tuples per page.</td>
+    </tr>
+    <tr>
+      <td>max_pred_locks_per_relation</td>
+      <td>-2</td>
+      <td>sighup</td>
+      <td>Lock Management</td>
+      <td>Sets the maximum number of predicate-locked pages and tuples per relation.</td>
+    </tr>
+    <tr>
+      <td>max_pred_locks_per_transaction</td>
+      <td>64</td>
+      <td>postmaster</td>
+      <td>Lock Management</td>
+      <td>Sets the maximum number of predicate locks per transaction.</td>
+    </tr>
+    <tr>
+      <td>block_size</td>
+      <td>8192</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the size of a disk block.</td>
+    </tr>
+    <tr>
+      <td>data_checksums</td>
+      <td>off</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows whether data checksums are turned on for this cluster.</td>
+    </tr>
+    <tr>
+      <td>data_directory_mode</td>
+      <td>0700</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Mode of the data directory.</td>
+    </tr>
+    <tr>
+      <td>debug_assertions</td>
+      <td>off</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows whether the running server has assertion checks enabled.</td>
+    </tr>
+    <tr>
+      <td>integer_datetimes</td>
+      <td>on</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Datetimes are integer based.</td>
+    </tr>
+    <tr>
+      <td>max_function_args</td>
+      <td>100</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the maximum number of function arguments.</td>
+    </tr>
+    <tr>
+      <td>max_identifier_length</td>
+      <td>63</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the maximum identifier length.</td>
+    </tr>
+    <tr>
+      <td>max_index_keys</td>
+      <td>32</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the maximum number of index keys.</td>
+    </tr>
+    <tr>
+      <td>segment_size</td>
+      <td>131072</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the number of pages per disk file.</td>
+    </tr>
+    <tr>
+      <td>server_version</td>
+      <td>12.6</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the server version.</td>
+    </tr>
+    <tr>
+      <td>server_version_num</td>
+      <td>120006</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the server version as an integer.</td>
+    </tr>
+    <tr>
+      <td>ssl_library</td>
+      <td>OpenSSL</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Name of the SSL library.</td>
+    </tr>
+    <tr>
+      <td>wal_block_size</td>
+      <td>8192</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the block size in the write ahead log.</td>
+    </tr>
+    <tr>
+      <td>wal_segment_size</td>
+      <td>67108864</td>
+      <td>internal</td>
+      <td>Preset Options</td>
+      <td>Shows the size of write ahead log segments.</td>
+    </tr>
+    <tr>
+      <td>update_process_title</td>
+      <td>on</td>
+      <td>superuser</td>
+      <td>Process Title</td>
+      <td>Updates the process title to show the active SQL command.</td>
+    </tr>
+    <tr>
+      <td>geqo</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>Enables genetic query optimization.</td>
+    </tr>
+    <tr>
+      <td>geqo_effort</td>
+      <td>5</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>GEQO: effort is used to set the default for other GEQO parameters.</td>
+    </tr>
+    <tr>
+      <td>geqo_generations</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>GEQO: number of iterations of the algorithm.</td>
+    </tr>
+    <tr>
+      <td>geqo_pool_size</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>GEQO: number of individuals in the population.</td>
+    </tr>
+    <tr>
+      <td>geqo_seed</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>GEQO: seed for random path selection.</td>
+    </tr>
+    <tr>
+      <td>geqo_selection_bias</td>
+      <td>2</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>GEQO: selective pressure within the population.</td>
+    </tr>
+    <tr>
+      <td>geqo_threshold</td>
+      <td>12</td>
+      <td>user</td>
+      <td>Query Tuning / Genetic Query Optimizer</td>
+      <td>Sets the threshold of FROM items beyond which GEQO is used.</td>
+    </tr>
+    <tr>
+      <td>constraint_exclusion</td>
+      <td>partition</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Enables the planner to use constraints to optimize queries.</td>
+    </tr>
+    <tr>
+      <td>cursor_tuple_fraction</td>
+      <td>0.1</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Sets the planner's estimate of the fraction of a cursor's rows that will be retrieved.</td>
+    </tr>
+    <tr>
+      <td>default_statistics_target</td>
+      <td>100</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Sets the default statistics target.</td>
+    </tr>
+    <tr>
+      <td>force_parallel_mode</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Forces use of parallel query facilities.</td>
+    </tr>
+    <tr>
+      <td>from_collapse_limit</td>
+      <td>8</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Sets the FROM-list size beyond which subqueries are not collapsed.</td>
+    </tr>
+    <tr>
+      <td>jit</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Allow JIT compilation.</td>
+    </tr>
+    <tr>
+      <td>join_collapse_limit</td>
+      <td>8</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Sets the FROM-list size beyond which JOIN constructs are not flattened.</td>
+    </tr>
+    <tr>
+      <td>plan_cache_mode</td>
+      <td>auto</td>
+      <td>user</td>
+      <td>Query Tuning / Other Planner Options</td>
+      <td>Controls the planner's selection of custom or generic plan.</td>
+    </tr>
+    <tr>
+      <td>cpu_index_tuple_cost</td>
+      <td>0.005</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of processing each index entry during an index scan.</td>
+    </tr>
+    <tr>
+      <td>cpu_operator_cost</td>
+      <td>0.0025</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of processing each operator or function call.</td>
+    </tr>
+    <tr>
+      <td>cpu_tuple_cost</td>
+      <td>0.01</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of processing each tuple (row).</td>
+    </tr>
+    <tr>
+      <td>effective_cache_size</td>
+      <td>66631555</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's assumption about the total size of the data caches.</td>
+    </tr>
+    <tr>
+      <td>jit_above_cost</td>
+      <td>100000</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Perform JIT compilation if query is more expensive.</td>
+    </tr>
+    <tr>
+      <td>jit_inline_above_cost</td>
+      <td>500000</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Perform JIT inlining if query is more expensive.</td>
+    </tr>
+    <tr>
+      <td>jit_optimize_above_cost</td>
+      <td>500000</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Optimize JITed functions if query is more expensive.</td>
+    </tr>
+    <tr>
+      <td>min_parallel_index_scan_size</td>
+      <td>64</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the minimum amount of index data for a parallel scan.</td>
+    </tr>
+    <tr>
+      <td>min_parallel_table_scan_size</td>
+      <td>1024</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the minimum amount of table data for a parallel scan.</td>
+    </tr>
+    <tr>
+      <td>parallel_setup_cost</td>
+      <td>1000</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of starting up worker processes for parallel query.</td>
+    </tr>
+    <tr>
+      <td>parallel_tuple_cost</td>
+      <td>0.1</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of passing each tuple (row) from worker to master backend.</td>
+    </tr>
+    <tr>
+      <td>random_page_cost</td>
+      <td>4</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of a nonsequentially fetched disk page.</td>
+    </tr>
+    <tr>
+      <td>seq_page_cost</td>
+      <td>1</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Cost Constants</td>
+      <td>Sets the planner's estimate of the cost of a sequentially fetched disk page.</td>
+    </tr>
+    <tr>
+      <td>apg_enable_correlated_any_transform</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner to transform correlated ANY Sublink (IN/NOT IN subquery) to JOIN when possible.</td>
+    </tr>
+    <tr>
+      <td>apg_enable_function_migration</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner to migrate eligible scalar functions to the FROM clause.</td>
+    </tr>
+    <tr>
+      <td>apg_enable_not_in_transform</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner to transform NOT IN subquery to ANTI JOIN when possible.</td>
+    </tr>
+    <tr>
+      <td>apg_enable_remove_redundant_inner_joins</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner to remove redundant inner joins.</td>
+    </tr>
+    <tr>
+      <td>apg_enable_semijoin_push_down</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the use of semijoin filters for hash joins.</td>
+    </tr>
+    <tr>
+      <td>apg_force_full_key_semijoin</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Forces the use of all keys in semijoin filters for hash joins, whenever possible.</td>
+    </tr>
+    <tr>
+      <td>apg_force_semijoin_push_down</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Forces the use of semijoin filters for hash joins, whenever possible.</td>
+    </tr>
+    <tr>
+      <td>apg_force_single_key_semijoin</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Forces the use of single key semijoin filters for hash joins, whenever possible.</td>
+    </tr>
+    <tr>
+      <td>enable_bitmapscan</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of bitmap-scan plans.</td>
+    </tr>
+    <tr>
+      <td>enable_gathermerge</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of gather merge plans.</td>
+    </tr>
+    <tr>
+      <td>enable_hashagg</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of hashed aggregation plans.</td>
+    </tr>
+    <tr>
+      <td>enable_hashjoin</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of hash join plans.</td>
+    </tr>
+    <tr>
+      <td>enable_indexonlyscan</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of index-only-scan plans.</td>
+    </tr>
+    <tr>
+      <td>enable_indexscan</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of index-scan plans.</td>
+    </tr>
+    <tr>
+      <td>enable_material</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of materialization.</td>
+    </tr>
+    <tr>
+      <td>enable_mergejoin</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of merge join plans.</td>
+    </tr>
+    <tr>
+      <td>enable_nestloop</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of nested-loop join plans.</td>
+    </tr>
+    <tr>
+      <td>enable_parallel_append</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of parallel append plans.</td>
+    </tr>
+    <tr>
+      <td>enable_parallel_hash</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of parallel hash plans.</td>
+    </tr>
+    <tr>
+      <td>enable_partition_pruning</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables plan-time and run-time partition pruning.</td>
+    </tr>
+    <tr>
+      <td>enable_partitionwise_aggregate</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables partitionwise aggregation and grouping.</td>
+    </tr>
+    <tr>
+      <td>enable_partitionwise_join</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables partitionwise join.</td>
+    </tr>
+    <tr>
+      <td>enable_seqscan</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of sequential-scan plans.</td>
+    </tr>
+    <tr>
+      <td>enable_sort</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of explicit sort steps.</td>
+    </tr>
+    <tr>
+      <td>enable_tidscan</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Query Tuning / Planner Method Configuration</td>
+      <td>Enables the planner's use of TID scan plans.</td>
+    </tr>
+    <tr>
+      <td>track_commit_timestamp</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Replication</td>
+      <td>Collects transaction commit time.</td>
+    </tr>
+    <tr>
+      <td>vacuum_defer_cleanup_age</td>
+      <td>0</td>
+      <td>sighup</td>
+      <td>Replication / Master Server</td>
+      <td>Number of transactions by which VACUUM and HOT cleanup should be deferred, if any.</td>
+    </tr>
+    <tr>
+      <td>max_replication_slots</td>
+      <td>10</td>
+      <td>postmaster</td>
+      <td>Replication / Sending Servers</td>
+      <td>Sets the maximum number of simultaneously defined replication slots.</td>
+    </tr>
+    <tr>
+      <td>max_wal_senders</td>
+      <td>10</td>
+      <td>postmaster</td>
+      <td>Replication / Sending Servers</td>
+      <td>Sets the maximum number of simultaneously running WAL sender processes.</td>
+    </tr>
+    <tr>
+      <td>rds.restrict_logical_slot_creation</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Replication / Sending Servers</td>
+      <td>Restrict logical slot creation over streaming replication protocol.</td>
+    </tr>
+    <tr>
+      <td>wal_keep_segments</td>
+      <td>0</td>
+      <td>sighup</td>
+      <td>Replication / Sending Servers</td>
+      <td>Sets the number of WAL files held for standby servers.</td>
+    </tr>
+    <tr>
+      <td>wal_sender_timeout</td>
+      <td>60000</td>
+      <td>user</td>
+      <td>Replication / Sending Servers</td>
+      <td>Sets the maximum time to wait for WAL replication.</td>
+    </tr>
+    <tr>
+      <td>hot_standby</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Replication / Standby Servers</td>
+      <td>Allows connections and queries during recovery.</td>
+    </tr>
+    <tr>
+      <td>hot_standby_feedback</td>
+      <td>on</td>
+      <td>postmaster</td>
+      <td>Replication / Standby Servers</td>
+      <td>Allows feedback from a hot standby to the primary that will avoid query conflicts.</td>
+    </tr>
+    <tr>
+      <td>max_standby_archive_delay</td>
+      <td>30000</td>
+      <td>sighup</td>
+      <td>Replication / Standby Servers</td>
+      <td>Sets the maximum delay before canceling queries when a hot standby server is processing archived WAL data.</td>
+    </tr>
+    <tr>
+      <td>max_standby_streaming_delay</td>
+      <td>14000</td>
+      <td>sighup</td>
+      <td>Replication / Standby Servers</td>
+      <td>Sets the maximum delay before canceling queries when a hot standby server is processing streamed WAL data.</td>
+    </tr>
+    <tr>
+      <td>recovery_min_apply_delay</td>
+      <td>0</td>
+      <td>sighup</td>
+      <td>Replication / Standby Servers</td>
+      <td>Sets the minimum delay for applying changes during recovery.</td>
+    </tr>
+    <tr>
+      <td>wal_receiver_status_interval</td>
+      <td>10</td>
+      <td>sighup</td>
+      <td>Replication / Standby Servers</td>
+      <td>Sets the maximum interval between WAL receiver status reports to the sending server.</td>
+    </tr>
+    <tr>
+      <td>wal_receiver_timeout</td>
+      <td>30000</td>
+      <td>sighup</td>
+      <td>Replication / Standby Servers</td>
+      <td>Sets the maximum wait time to receive data from the sending server.</td>
+    </tr>
+    <tr>
+      <td>wal_retrieve_retry_interval</td>
+      <td>5000</td>
+      <td>sighup</td>
+      <td>Replication / Standby Servers</td>
+      <td>Sets the time to wait before retrying to retrieve WAL after a failed attempt.</td>
+    </tr>
+    <tr>
+      <td>max_logical_replication_workers</td>
+      <td>4</td>
+      <td>postmaster</td>
+      <td>Replication / Subscribers</td>
+      <td>Maximum number of logical replication worker processes.</td>
+    </tr>
+    <tr>
+      <td>max_sync_workers_per_subscription</td>
+      <td>2</td>
+      <td>sighup</td>
+      <td>Replication / Subscribers</td>
+      <td>Maximum number of table synchronization workers per subscription.</td>
+    </tr>
+    <tr>
+      <td>debug_pretty_print</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Indents parse and plan tree displays.</td>
+    </tr>
+    <tr>
+      <td>debug_print_parse</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs each query's parse tree.</td>
+    </tr>
+    <tr>
+      <td>debug_print_plan</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs each query's execution plan.</td>
+    </tr>
+    <tr>
+      <td>debug_print_rewritten</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs each query's rewritten parse tree.</td>
+    </tr>
+    <tr>
+      <td>log_autovacuum_min_duration</td>
+      <td>10000</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Sets the minimum execution time above which autovacuum actions will be logged.</td>
+    </tr>
+    <tr>
+      <td>log_checkpoints</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs each checkpoint.</td>
+    </tr>
+    <tr>
+      <td>log_connections</td>
+      <td>off</td>
+      <td>superuser-backend</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs each successful connection.</td>
+    </tr>
+    <tr>
+      <td>log_disconnections</td>
+      <td>off</td>
+      <td>superuser-backend</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs end of a session, including duration.</td>
+    </tr>
+    <tr>
+      <td>log_duration</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs the duration of each completed SQL statement.</td>
+    </tr>
+    <tr>
+      <td>log_error_verbosity</td>
+      <td>default</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Sets the verbosity of logged messages.</td>
+    </tr>
+    <tr>
+      <td>log_hostname</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs the host name in the connection logs.</td>
+    </tr>
+    <tr>
+      <td>log_line_prefix</td>
+      <td>%t:%r:%u@%d:[%p]:</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Controls information prefixed to each log line.</td>
+    </tr>
+    <tr>
+      <td>log_lock_waits</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs long lock waits.</td>
+    </tr>
+    <tr>
+      <td>log_replication_commands</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Logs each replication command.</td>
+    </tr>
+    <tr>
+      <td>log_statement</td>
+      <td>none</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Sets the type of statements logged.</td>
+    </tr>
+    <tr>
+      <td>log_temp_files</td>
+      <td>-1</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Log the use of temporary files larger than this number of kilobytes.</td>
+    </tr>
+    <tr>
+      <td>log_timezone</td>
+      <td>UTC</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / What to Log</td>
+      <td>Sets the time zone to use in log messages.</td>
+    </tr>
+    <tr>
+      <td>log_min_duration_statement</td>
+      <td>-1</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / When to Log</td>
+      <td>Sets the minimum execution time above which statements will be logged.</td>
+    </tr>
+    <tr>
+      <td>log_min_error_statement</td>
+      <td>error</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / When to Log</td>
+      <td>Causes all statements generating error at or above this level to be logged.</td>
+    </tr>
+    <tr>
+      <td>log_min_messages</td>
+      <td>warning</td>
+      <td>rds_superuser</td>
+      <td>Reporting and Logging / When to Log</td>
+      <td>Sets the message levels that are logged.</td>
+    </tr>
+    <tr>
+      <td>log_transaction_sample_rate</td>
+      <td>0</td>
+      <td>superuser</td>
+      <td>Reporting and Logging / When to Log</td>
+      <td>Set the fraction of transactions to log for new transactions.</td>
+    </tr>
+    <tr>
+      <td>event_source</td>
+      <td>PostgreSQL</td>
+      <td>postmaster</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the application name used to identify PostgreSQL messages in the event log.</td>
+    </tr>
+    <tr>
+      <td>log_destination</td>
+      <td>stderr</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the destination for server log output.</td>
+    </tr>
+    <tr>
+      <td>log_directory</td>
+      <td>/rdsdbdata/log/error</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the destination directory for log files.</td>
+    </tr>
+    <tr>
+      <td>log_file_mode</td>
+      <td>0644</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the file permissions for log files.</td>
+    </tr>
+    <tr>
+      <td>log_filename</td>
+      <td>postgresql.log.%Y-%m-%d-%H%M</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the file name pattern for log files.</td>
+    </tr>
+    <tr>
+      <td>log_rotation_age</td>
+      <td>60</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Automatic log file rotation will occur after N minutes.</td>
+    </tr>
+    <tr>
+      <td>log_rotation_size</td>
+      <td>100000</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Automatic log file rotation will occur after N kilobytes.</td>
+    </tr>
+    <tr>
+      <td>log_truncate_on_rotation</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Truncate existing log files of same name during log rotation.</td>
+    </tr>
+    <tr>
+      <td>logging_collector</td>
+      <td>on</td>
+      <td>postmaster</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Start a subprocess to capture stderr output and/or csvlogs into log files.</td>
+    </tr>
+    <tr>
+      <td>syslog_facility</td>
+      <td>local0</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the syslog "facility" to be used when syslog enabled.</td>
+    </tr>
+    <tr>
+      <td>syslog_ident</td>
+      <td>postgres</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Sets the program name used to identify PostgreSQL messages in syslog.</td>
+    </tr>
+    <tr>
+      <td>syslog_sequence_numbers</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Add sequence number to syslog messages to avoid duplicate suppression.</td>
+    </tr>
+    <tr>
+      <td>syslog_split_messages</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Reporting and Logging / Where to Log</td>
+      <td>Split messages sent to syslog by lines and to fit into 1024 bytes.</td>
+    </tr>
+    <tr>
+      <td>backend_flush_after</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Number of pages after which previously performed writes are flushed to disk.</td>
+    </tr>
+    <tr>
+      <td>effective_io_concurrency</td>
+      <td>256</td>
+      <td>user</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Number of simultaneous requests that can be handled efficiently by the disk subsystem.</td>
+    </tr>
+    <tr>
+      <td>max_parallel_maintenance_workers</td>
+      <td>2</td>
+      <td>user</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Sets the maximum number of parallel processes per maintenance operation.</td>
+    </tr>
+    <tr>
+      <td>max_parallel_workers</td>
+      <td>8</td>
+      <td>user</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Sets the maximum number of parallel workers that can be active at one time.</td>
+    </tr>
+    <tr>
+      <td>max_parallel_workers_per_gather</td>
+      <td>2</td>
+      <td>user</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Sets the maximum number of parallel processes per executor node.</td>
+    </tr>
+    <tr>
+      <td>max_worker_processes</td>
+      <td>64</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Maximum number of concurrent worker processes.</td>
+    </tr>
+    <tr>
+      <td>old_snapshot_threshold</td>
+      <td>-1</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Time before a snapshot is too old to read pages changed after the snapshot was taken.</td>
+    </tr>
+    <tr>
+      <td>parallel_leader_participation</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Resource Usage / Asynchronous Behavior</td>
+      <td>Controls whether Gather and Gather Merge also run subplans.</td>
+    </tr>
+    <tr>
+      <td>bgwriter_delay</td>
+      <td>200</td>
+      <td>sighup</td>
+      <td>Resource Usage / Background Writer</td>
+      <td>Background writer sleep time between rounds.</td>
+    </tr>
+    <tr>
+      <td>bgwriter_flush_after</td>
+      <td>64</td>
+      <td>sighup</td>
+      <td>Resource Usage / Background Writer</td>
+      <td>Number of pages after which previously performed writes are flushed to disk.</td>
+    </tr>
+    <tr>
+      <td>bgwriter_lru_maxpages</td>
+      <td>100</td>
+      <td>sighup</td>
+      <td>Resource Usage / Background Writer</td>
+      <td>Background writer maximum number of LRU pages to flush per round.</td>
+    </tr>
+    <tr>
+      <td>bgwriter_lru_multiplier</td>
+      <td>2</td>
+      <td>sighup</td>
+      <td>Resource Usage / Background Writer</td>
+      <td>Multiple of the average buffer usage to free per round.</td>
+    </tr>
+    <tr>
+      <td>vacuum_cost_delay</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Resource Usage / Cost-Based Vacuum Delay</td>
+      <td>Vacuum cost delay in milliseconds.</td>
+    </tr>
+    <tr>
+      <td>vacuum_cost_limit</td>
+      <td>200</td>
+      <td>user</td>
+      <td>Resource Usage / Cost-Based Vacuum Delay</td>
+      <td>Vacuum cost amount available before napping.</td>
+    </tr>
+    <tr>
+      <td>vacuum_cost_page_dirty</td>
+      <td>20</td>
+      <td>user</td>
+      <td>Resource Usage / Cost-Based Vacuum Delay</td>
+      <td>Vacuum cost for a page dirtied by vacuum.</td>
+    </tr>
+    <tr>
+      <td>vacuum_cost_page_hit</td>
+      <td>1</td>
+      <td>user</td>
+      <td>Resource Usage / Cost-Based Vacuum Delay</td>
+      <td>Vacuum cost for a page found in the buffer cache.</td>
+    </tr>
+    <tr>
+      <td>vacuum_cost_page_miss</td>
+      <td>0</td>
+      <td>user</td>
+      <td>Resource Usage / Cost-Based Vacuum Delay</td>
+      <td>Vacuum cost for a page not found in the buffer cache.</td>
+    </tr>
+    <tr>
+      <td>temp_file_limit</td>
+      <td>-1</td>
+      <td>rds_superuser</td>
+      <td>Resource Usage / Disk</td>
+      <td>Limits the total size of all temporary files used by each process.</td>
+    </tr>
+    <tr>
+      <td>max_files_per_process</td>
+      <td>1000</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Kernel Resources</td>
+      <td>Sets the maximum number of simultaneously open files for each server process.</td>
+    </tr>
+    <tr>
+      <td>async_notifications_cache_size</td>
+      <td>8</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the number of SLRU cache entries used by async notifications.</td>
+    </tr>
+    <tr>
+      <td>autovacuum_work_mem</td>
+      <td>-1</td>
+      <td>sighup</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum memory to be used by each autovacuum worker process.</td>
+    </tr>
+    <tr>
+      <td>commit_timestamp_cache_size</td>
+      <td>16</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the number of SLRU cache entries used by commit timestamp.</td>
+    </tr>
+    <tr>
+      <td>dynamic_shared_memory_type</td>
+      <td>posix</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Selects the dynamic shared memory implementation used.</td>
+    </tr>
+    <tr>
+      <td>eventpoints_mode</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Resource Usage / Memory</td>
+      <td>Enable event points using the apgdbcc extension.</td>
+    </tr>
+    <tr>
+      <td>huge_pages</td>
+      <td>on</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Use of huge pages on Linux or Windows.</td>
+    </tr>
+    <tr>
+      <td>logical_decoding_work_mem</td>
+      <td>65536</td>
+      <td>user</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum memory to be used for logical decoding.</td>
+    </tr>
+    <tr>
+      <td>maintenance_work_mem</td>
+      <td>12850176</td>
+      <td>user</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum memory to be used for maintenance operations.</td>
+    </tr>
+    <tr>
+      <td>max_prepared_transactions</td>
+      <td>0</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum number of simultaneously prepared transactions.</td>
+    </tr>
+    <tr>
+      <td>max_stack_depth</td>
+      <td>6144</td>
+      <td>superuser</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum stack depth, in kilobytes.</td>
+    </tr>
+    <tr>
+      <td>multixact_members_cache_size</td>
+      <td>16</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the number of SLRU cache entries used by multixact members.</td>
+    </tr>
+    <tr>
+      <td>multixact_offsets_cache_size</td>
+      <td>8</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the number of SLRU cache entries used by multixact offsets.</td>
+    </tr>
+    <tr>
+      <td>shared_buffers</td>
+      <td>500000</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the number of shared memory buffers used by the server.</td>
+    </tr>
+    <tr>
+      <td>shared_memory_type</td>
+      <td>mmap</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Selects the shared memory implementation used for the main shared memory region.</td>
+    </tr>
+    <tr>
+      <td>slru_cache_mode</td>
+      <td>on</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>SLRU cache mode.</td>
+    </tr>
+    <tr>
+      <td>subtrans_cache_size</td>
+      <td>32</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the max per-backend cached subtransaction pages.</td>
+    </tr>
+    <tr>
+      <td>survivable_cache_mode</td>
+      <td>on</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Survivable cache recovery mode.</td>
+    </tr>
+    <tr>
+      <td>temp_buffers</td>
+      <td>1024</td>
+      <td>user</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum number of temporary buffers used by each session.</td>
+    </tr>
+    <tr>
+      <td>track_activity_query_size</td>
+      <td>4096</td>
+      <td>postmaster</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the size reserved for pg_stat_activity.query, in bytes.</td>
+    </tr>
+    <tr>
+      <td>work_mem</td>
+      <td>4096</td>
+      <td>user</td>
+      <td>Resource Usage / Memory</td>
+      <td>Sets the maximum memory to be used for query workspaces.</td>
+    </tr>
+    <tr>
+      <td>log_executor_stats</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Monitoring</td>
+      <td>Writes executor performance statistics to the server log.</td>
+    </tr>
+    <tr>
+      <td>log_parser_stats</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Monitoring</td>
+      <td>Writes parser performance statistics to the server log.</td>
+    </tr>
+    <tr>
+      <td>log_planner_stats</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Monitoring</td>
+      <td>Writes planner performance statistics to the server log.</td>
+    </tr>
+    <tr>
+      <td>log_statement_stats</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Monitoring</td>
+      <td>Writes cumulative performance statistics to the server log.</td>
+    </tr>
+    <tr>
+      <td>stats_temp_directory</td>
+      <td>/rdsdbdata/db/pg_stat_tmp</td>
+      <td>sighup</td>
+      <td>Statistics / Query and Index Statistics Collector</td>
+      <td>Writes temporary statistics files to the specified directory.</td>
+    </tr>
+    <tr>
+      <td>track_activities</td>
+      <td>on</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Query and Index Statistics Collector</td>
+      <td>Collects information about executing commands.</td>
+    </tr>
+    <tr>
+      <td>track_counts</td>
+      <td>on</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Query and Index Statistics Collector</td>
+      <td>Collects statistics on database activity.</td>
+    </tr>
+    <tr>
+      <td>track_functions</td>
+      <td>pl</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Query and Index Statistics Collector</td>
+      <td>Collects function-level statistics on database activity.</td>
+    </tr>
+    <tr>
+      <td>track_io_timing</td>
+      <td>on</td>
+      <td>rds_superuser</td>
+      <td>Statistics / Query and Index Statistics Collector</td>
+      <td>Collects timing statistics for database I/O activity.</td>
+    </tr>
+    <tr>
+      <td>ansi_constraint_trigger_ordering</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Version and Platform Compatibility / Other Platforms and Clients</td>
+      <td>Change the firing order of constraint triggers to be compatible with the ANSI SQL standard.</td>
+    </tr>
+    <tr>
+      <td>ansi_force_foreign_key_checks</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Version and Platform Compatibility / Other Platforms and Clients</td>
+      <td>Ensure referential actions such as cascaded delete or cascaded update will always occur regardless of the various trigger contexs that exist for the action.</td>
+    </tr>
+    <tr>
+      <td>ansi_qualified_update_set_target</td>
+      <td>off</td>
+      <td>rds_superuser</td>
+      <td>Version and Platform Compatibility / Other Platforms and Clients</td>
+      <td>Support table and schema qualifiers in UPDATE ... SET statements. e.g. UPDATE t SET s.t.c = v WHERE p.off provides community PostgreSQL semantics and on provides this feature.</td>
+    </tr>
+    <tr>
+      <td>transform_null_equals</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Other Platforms and Clients</td>
+      <td>Treats "expr=NULL" as "expr IS NULL".</td>
+    </tr>
+    <tr>
+      <td>array_nulls</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Enable input of NULL elements in arrays.</td>
+    </tr>
+    <tr>
+      <td>backslash_quote</td>
+      <td>safe_encoding</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Sets whether "\'" is allowed in string literals.</td>
+    </tr>
+    <tr>
+      <td>escape_string_warning</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Warn about backslash escapes in ordinary string literals.</td>
+    </tr>
+    <tr>
+      <td>lo_compat_privileges</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Enables backward compatibility mode for privilege checks on large objects.</td>
+    </tr>
+    <tr>
+      <td>operator_precedence_warning</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Emit a warning for constructs that changed meaning since PostgreSQL 9.4.</td>
+    </tr>
+    <tr>
+      <td>quote_all_identifiers</td>
+      <td>off</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>When generating SQL fragments, quote all identifiers.</td>
+    </tr>
+    <tr>
+      <td>standard_conforming_strings</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Causes '...' strings to treat backslashes literally.</td>
+    </tr>
+    <tr>
+      <td>synchronize_seqscans</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Version and Platform Compatibility / Previous PostgreSQL Versions</td>
+      <td>Enable synchronized sequential scans.</td>
+    </tr>
+    <tr>
+      <td>archive_command</td>
+      <td>(disabled)</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Archiving</td>
+      <td>Sets the shell command that will be called to archive a WAL file.</td>
+    </tr>
+    <tr>
+      <td>archive_mode</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Archiving</td>
+      <td>Allows archiving of WAL files using archive_command.</td>
+    </tr>
+    <tr>
+      <td>archive_timeout</td>
+      <td>300</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Archiving</td>
+      <td>Forces a switch to the next WAL file if a new file has not been started within N seconds.</td>
+    </tr>
+    <tr>
+      <td>checkpoint_completion_target</td>
+      <td>0.5</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Checkpoints</td>
+      <td>Time spent flushing dirty buffers during checkpoint, as fraction of checkpoint interval.</td>
+    </tr>
+    <tr>
+      <td>checkpoint_flush_after</td>
+      <td>32</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Checkpoints</td>
+      <td>Number of pages after which previously performed writes are flushed to disk.</td>
+    </tr>
+    <tr>
+      <td>checkpoint_timeout</td>
+      <td>60</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Checkpoints</td>
+      <td>Sets the maximum time between automatic WAL checkpoints.</td>
+    </tr>
+    <tr>
+      <td>checkpoint_warning</td>
+      <td>30</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Checkpoints</td>
+      <td>Enables warnings if checkpoint segments are filled more frequently than this.</td>
+    </tr>
+    <tr>
+      <td>max_wal_size</td>
+      <td>1024</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Checkpoints</td>
+      <td>Sets the WAL size that triggers a checkpoint.</td>
+    </tr>
+    <tr>
+      <td>min_wal_size</td>
+      <td>512</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Checkpoints</td>
+      <td>Sets the minimum size to shrink the WAL to.</td>
+    </tr>
+    <tr>
+      <td>recovery_target_action</td>
+      <td>pause</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Recovery Target</td>
+      <td>Sets the action to perform upon reaching the recovery target.</td>
+    </tr>
+    <tr>
+      <td>recovery_target_inclusive</td>
+      <td>on</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Recovery Target</td>
+      <td>Sets whether to include or exclude transaction with recovery target.</td>
+    </tr>
+    <tr>
+      <td>recovery_target_timeline</td>
+      <td>latest</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Recovery Target</td>
+      <td>Specifies the timeline to recover into.</td>
+    </tr>
+    <tr>
+      <td>commit_delay</td>
+      <td>0</td>
+      <td>superuser</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Sets the delay in microseconds between transaction commit and flushing WAL to disk.</td>
+    </tr>
+    <tr>
+      <td>commit_siblings</td>
+      <td>5</td>
+      <td>user</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Sets the minimum concurrent open transactions before performing commit_delay.</td>
+    </tr>
+    <tr>
+      <td>fsync</td>
+      <td>on</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Forces synchronization of updates to disk.</td>
+    </tr>
+    <tr>
+      <td>full_page_writes</td>
+      <td>off</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Writes full pages to WAL when first modified after a checkpoint.</td>
+    </tr>
+    <tr>
+      <td>synchronous_commit</td>
+      <td>on</td>
+      <td>user</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Sets the current transaction's synchronization level.</td>
+    </tr>
+    <tr>
+      <td>wal_buffers</td>
+      <td>2048</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Sets the number of disk-page buffers in shared memory for WAL.</td>
+    </tr>
+    <tr>
+      <td>wal_compression</td>
+      <td>off</td>
+      <td>superuser</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Compresses full-page writes written in WAL file.</td>
+    </tr>
+    <tr>
+      <td>wal_init_zero</td>
+      <td>on</td>
+      <td>superuser</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Writes zeroes to new WAL files before first use.</td>
+    </tr>
+    <tr>
+      <td>wal_level</td>
+      <td>replica</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Set the level of information written to the WAL.</td>
+    </tr>
+    <tr>
+      <td>wal_log_hints</td>
+      <td>off</td>
+      <td>postmaster</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Writes full pages to WAL when first modified after a checkpoint, even for a non-critical modifications.</td>
+    </tr>
+    <tr>
+      <td>wal_recycle</td>
+      <td>on</td>
+      <td>superuser</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Recycles WAL files by renaming them.</td>
+    </tr>
+    <tr>
+      <td>wal_sync_method</td>
+      <td>fdatasync</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Selects the method used for forcing WAL updates to disk.</td>
+    </tr>
+    <tr>
+      <td>wal_writer_delay</td>
+      <td>200</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Time between WAL flushes performed in the WAL writer.</td>
+    </tr>
+    <tr>
+      <td>wal_writer_flush_after</td>
+      <td>128</td>
+      <td>sighup</td>
+      <td>Write-Ahead Log / Settings</td>
+      <td>Amount of WAL written out by WAL writer that triggers a flush.</td>
+    </tr>
+  </tbody>
+</table>
+      <h2 id="par_tl">Changed Parameters Timeline</h2>
+      <a href="#overview">[back to menu]</a>
+      <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>change time</th>
+      <th>name</th>
+      <th>setting</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+   </div>
+   <div id="io" class="tabcontent">
+      <div class="tab">
+         <button id="io_table_stats_btn" class="tablinksSub" onclick="openSubSection(event, 'table_stats')">By Table</button>
+         <button class="tablinksSub" onclick="openSubSection(event, 'index_stats')">By Index</button>
+         <button class="tablinksSub" onclick="openSubSection(event, 'sqlio_stats')">By SQL</button>
+         
+      </div>
+      <div id="table_stats" class="tabcontentSub">
+         <ul>
+            <li>
+               <a href="#ts_hr">Top 50 tables read from disk</a>
+            </li>
+            <li>
+               <a href="#ts_ir">Top 50 tables with indexes read from disk</a>
+            </li>
+            <li>
+               <a href="#ts_tr">Top 50 tables with toast read from disk</a>
+            </li>
+            <li>
+               <a href="#ts_tir">Top 50 tables with toast indexes from disk</a>
+            </li>
+            <li>
+               <a href="#ts_hh">Top 50 tables read from memory</a>
+            </li>
+            <li>
+               <a href="#ts_ih">Top 50 tables with indexes read from memory</a>
+            </li>
+            <li>
+               <a href="#ts_th">Top 50 tables with toast read from memory</a>
+            </li>
+            <li>
+               <a href="#ts_tih">Top 50 tables with toast indexes from memory</a>
+            </li>
+         </ul>
+         <h2 id="ts_hr">Top 50 tables read from disk</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total heap read</th>
+      <th>heap block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large</td>
+      <td>264.0 KB</td>
+      <td>99.84</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ts_ir">Top 50 tables with indexes read from disk</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total index read</th>
+      <th>index block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large</td>
+      <td>239.4 MB</td>
+      <td>89.91</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ts_tr">Top 50 tables with toast read from disk</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total toast read</th>
+      <th>toast block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+         <h2 id="ts_tir">Top 50 tables with toast indexes from disk</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total toast index read</th>
+      <th>toast index block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+         <h2 id="ts_hh">Top 50 tables read from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total heap hit</th>
+      <th>heap block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large</td>
+      <td>161.1 MB</td>
+      <td>99.84</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class</td>
+      <td>6.2 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_index</td>
+      <td>3.1 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_attribute</td>
+      <td>1.8 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_namespace</td>
+      <td>1.7 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_proc</td>
+      <td>800.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_database</td>
+      <td>384.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_type</td>
+      <td>320.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic</td>
+      <td>320.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amop</td>
+      <td>280.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator</td>
+      <td>184.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid</td>
+      <td>136.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_opclass</td>
+      <td>128.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_rewrite</td>
+      <td>128.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_db_role_setting</td>
+      <td>96.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amproc</td>
+      <td>64.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_tablespace</td>
+      <td>32.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_am</td>
+      <td>24.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast</td>
+      <td>16.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_auth_members</td>
+      <td>16.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_aggregate</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ts_ih">Top 50 tables with indexes read from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total index hit</th>
+      <th>index block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large</td>
+      <td>2.1 GB</td>
+      <td>89.91</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class</td>
+      <td>7.9 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_attribute</td>
+      <td>3.5 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_index</td>
+      <td>2.1 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_namespace</td>
+      <td>1.7 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_proc</td>
+      <td>1.6 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_type</td>
+      <td>664.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic</td>
+      <td>656.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_database</td>
+      <td>416.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator</td>
+      <td>400.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amop</td>
+      <td>368.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_db_role_setting</td>
+      <td>360.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid</td>
+      <td>200.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic_ext</td>
+      <td>192.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amproc</td>
+      <td>152.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_rewrite</td>
+      <td>136.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_opclass</td>
+      <td>96.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_toast.pg_toast_2618</td>
+      <td>88.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint</td>
+      <td>64.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast</td>
+      <td>64.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_tablespace</td>
+      <td>48.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_auth_members</td>
+      <td>48.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_aggregate</td>
+      <td>16.0 KB</td>
+      <td>100.00</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ts_th">Top 50 tables with toast read from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total toast hit</th>
+      <th>toast block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+         <h2 id="ts_tih">Top 50 tables with toast indexes from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total toast index hit</th>
+      <th>toast index block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pg_catalog.pg_rewrite</td>
+      <td>176.0 KB</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div id="index_stats" class="tabcontentSub">
+         <ul>
+            <li>
+               <a href="#is_iu">Top 50 tables with most unused indexes</a>
+            </li>         
+            <li>
+               <a href="#is_ir">Top 50 indexes read from disk</a>
+            </li>
+            <li>
+               <a href="#is_ih">Top 50 indexes read from memory</a>
+            </li>
+         </ul>
+         <h2 id="is_iu">Top 50 in most unused indexes</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>total unused indexes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+         <details>
+            <summary>List of Unused Indexes ( Up to 500 displayed )</summary>
+            <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>table name</th>
+      <th>index name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large</td>
+      <td>public.large.large_updated_at</td>
+    </tr>
+    <tr>
+      <td>public.large</td>
+      <td>public.large.large_col0</td>
+    </tr>
+    <tr>
+      <td>public.large</td>
+      <td>public.large.large_col1</td>
+    </tr>
+    <tr>
+      <td>public.large</td>
+      <td>public.large.large_col10</td>
+    </tr>
+    <tr>
+      <td>public.large</td>
+      <td>public.large.large_col5</td>
+    </tr>
+  </tbody>
+</table>
+         </details>
+         <h2 id="is_ir">Top 50 indexes read from disk</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>index name</th>
+      <th>total index read</th>
+      <th>block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large.large_col10</td>
+      <td>106.5 MB</td>
+      <td>81.24</td>
+    </tr>
+    <tr>
+      <td>public.large.large_col5</td>
+      <td>105.0 MB</td>
+      <td>81.46</td>
+    </tr>
+    <tr>
+      <td>public.large.large_col1</td>
+      <td>464.0 KB</td>
+      <td>99.86</td>
+    </tr>
+    <tr>
+      <td>public.large.large_updated_at</td>
+      <td>336.0 KB</td>
+      <td>99.81</td>
+    </tr>
+    <tr>
+      <td>public.large.large_created_at</td>
+      <td>328.0 KB</td>
+      <td>99.83</td>
+    </tr>
+    <tr>
+      <td>public.large.large_pkey</td>
+      <td>320.0 KB</td>
+      <td>99.89</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="is_ih">Top 50 indexes read from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>index name</th>
+      <th>total index hit</th>
+      <th>block hit ratio (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>public.large.large_col5</td>
+      <td>461.5 MB</td>
+      <td>81.46</td>
+    </tr>
+    <tr>
+      <td>public.large.large_col10</td>
+      <td>461.0 MB</td>
+      <td>81.24</td>
+    </tr>
+    <tr>
+      <td>public.large.large_col1</td>
+      <td>326.5 MB</td>
+      <td>99.86</td>
+    </tr>
+    <tr>
+      <td>public.large.large_pkey</td>
+      <td>276.0 MB</td>
+      <td>99.89</td>
+    </tr>
+    <tr>
+      <td>public.large.large_created_at</td>
+      <td>183.8 MB</td>
+      <td>99.83</td>
+    </tr>
+    <tr>
+      <td>public.large.large_updated_at</td>
+      <td>175.6 MB</td>
+      <td>99.81</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class.pg_class_oid_index</td>
+      <td>6.8 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_attribute.pg_attribute_relid_attnum_index</td>
+      <td>2.8 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_index.pg_index_indexrelid_index</td>
+      <td>1.6 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_namespace.pg_namespace_oid_index</td>
+      <td>1.6 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_proc.pg_proc_oid_index</td>
+      <td>1.2 MB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class.pg_class_relname_nsp_index</td>
+      <td>680.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic.pg_statistic_relid_att_inh_index</td>
+      <td>520.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_type.pg_type_oid_index</td>
+      <td>376.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_index.pg_index_indrelid_index</td>
+      <td>360.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_db_role_setting.pg_db_role_setting_databaseid_rol_index</td>
+      <td>240.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator.pg_operator_oid_index</td>
+      <td>168.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_database.pg_database_oid_index</td>
+      <td>168.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_proc.pg_proc_proname_args_nsp_index</td>
+      <td>136.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amop.pg_amop_fam_strat_index</td>
+      <td>120.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amproc.pg_amproc_fam_proc_index</td>
+      <td>112.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid.pg_authid_rolname_index</td>
+      <td>112.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_statistic_ext.pg_statistic_ext_relid_index</td>
+      <td>112.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_database.pg_database_datname_index</td>
+      <td>104.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_amop.pg_amop_opr_fam_index</td>
+      <td>104.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_rewrite.pg_rewrite_rel_rulename_index</td>
+      <td>104.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_namespace.pg_namespace_nspname_index</td>
+      <td>96.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_toast.pg_toast_2618.pg_toast_2618_index</td>
+      <td>72.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_operator.pg_operator_oprname_l_r_n_index</td>
+      <td>72.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_cast.pg_cast_source_target_index</td>
+      <td>64.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_opclass.pg_opclass_oid_index</td>
+      <td>56.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_auth_members.pg_auth_members_member_role_index</td>
+      <td>48.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_authid.pg_authid_oid_index</td>
+      <td>32.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conrelid_contypid_conname_index</td>
+      <td>32.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_type.pg_type_typname_nsp_index</td>
+      <td>24.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_tablespace.pg_tablespace_oid_index</td>
+      <td>24.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_opclass.pg_opclass_am_name_nsp_index</td>
+      <td>16.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_aggregate.pg_aggregate_fnoid_index</td>
+      <td>16.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_oid_index</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_contypid_index</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conparentid_index</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_constraint.pg_constraint_conname_nsp_index</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+    <tr>
+      <td>pg_catalog.pg_class.pg_class_tblspc_relfilenode_index</td>
+      <td>8.0 KB</td>
+      <td>100.00</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div id="bgwriter_stats" class="tabcontentSub">
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>last reset</th>
+      <th>total checkpoints timed</th>
+      <th>total checkpoints requested</th>
+      <th>total written by checkpoint</th>
+      <th>total written by bgwriter</th>
+      <th>total written by backends</th>
+      <th>checkpoint timed/requested ratio</th>
+      <th>checkpoints/second</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2021-07-24 12:38:20</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div id="sqlio_stats" class="tabcontentSub">
+         <ul>
+            <li>
+               <a href="#ss_sr">Top 50 SQL in disk reads</a>
+            </li>
+            <li>
+               <a href="#ss_sh">Top 50 SQL in memory reads</a>
+            </li>
+            <li>
+               <a href="#ss_tr">Top 50 SQL in temp read</a>
+            </li>
+            <li>
+               <a href="#ss_tw">Top 50 SQL in temp written</a>
+            </li>
+            
+         </ul>
+         <h2 id="ss_sr">Top 50 SQL in disk reads</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total shared blocks read</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks written</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>postgres</td>
+      <td>9156502150409338362</td>
+      <td>217.6 MB</td>
+      <td>2.2 GB</td>
+      <td>4.1 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>91.14</td>
+      <td>15013</td>
+      <td>2.33</td>
+      <td>1771.03</td>
+      <td>19.09</td>
+      <td>1.86</td>
+      <td>2.04</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ss_sh">Top 50 SQL in reads from memory</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks read</th>
+      <th>total shared blocks written</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>postgres</td>
+      <td>9156502150409338362</td>
+      <td>2.2 GB</td>
+      <td>217.6 MB</td>
+      <td>4.1 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>91.14</td>
+      <td>15013</td>
+      <td>2.33</td>
+      <td>1771.03</td>
+      <td>19.09</td>
+      <td>1.86</td>
+      <td>2.04</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>6215423120413141912</td>
+      <td>13.4 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>12.00</td>
+      <td>0.12</td>
+      <td>1714.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select  $1 capture_version, * from\n\t\t\t\t\t(select \n\t\t\t\t\t  d.conname,\n\t\t\t\t\t  b.schemaname,\n                      b.relid,\n                      b.indexrelid,\n\t\t\t\t\t  b.relname,\n\t\t\t\t\t  b.indexrelname,\n\t\t\t\t\t  b.idx_scan, \n\t\t\t\t\t  b.idx_tup_read,\n\t\t\t\t\t  b.idx_tup_fetch,\n\t\t\t\t\t  a.idx_blks_read, \n\t\t\t\t\t  a.idx_blks_hit, \n\t\t\t\t\t  c.indisunique, \n\t\t\t\t\t  c.indisprimary, \n\t\t\t\t\t  c.indisvalid, \n\t\t\t\t\t  c.indkey::text as indkey\n\t\t\t\t\t  from pg_statio_all_indexes a, pg_index c, pg_stat_all_indexes b full outer join pg_catalog.pg_constraint d on d.conindid=b.indexrelid \n\t\t\t\t\t  where c.indrelid=a.relid \n\t\t\t\t\t  and c.indexrelid=a.indexrelid \n\t\t\t\t\t  and a.relid = b.relid \n\t\t\t\t\t  and a.schemaname = b.schemaname \n\t\t\t\t\t  and a.relname = b.relname \n\t\t\t\t\t  and a.indexrelname = b.indexrelname \n\t\t\t\t\t  and a.indexrelid=b.indexrelid) as index_stats</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>3565551731261737535</td>
+      <td>520.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>0.12</td>
+      <td>65.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select $1 capture_version, * from \n\t\t\t\t(select \n\t\t\t\t\tb.*,\n\t\t\t\t\ta.heap_blks_read,\n\t\t\t\t\ta.heap_blks_hit,\n\t\t\t\t\ta.idx_blks_read,\n\t\t\t\t\ta.idx_blks_hit,\n\t\t\t\t\ta.toast_blks_read,\n\t\t\t\t\ta.toast_blks_hit,\n\t\t\t\t\ta.tidx_blks_read,\n\t\t\t\t\ta.tidx_blks_hit\n\t\t\t\t\tfrom pg_statio_all_tables a, pg_stat_all_tables b \n\t\t\t\t\twhere a.relid = b.relid and a.schemaname = b.schemaname and a.relname = b.relname) as table_stats</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>5778854655118074406</td>
+      <td>144.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>9</td>
+      <td>0.00</td>
+      <td>1.06</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where pg_catalog.pg_table_is_visible(c.oid) and relname=$1</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>4427547915007460681</td>
+      <td>56.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>0.12</td>
+      <td>7.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select \n    $1 capture_version, \n    current_database(), \n    pg_is_in_recovery() standby, \n    age(b.datfrozenxid) oldest_transaction_age, \n    * \nfrom pg_stat_database a, pg_database b \nwhere a.datid=b.oid</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>387979678266121443</td>
+      <td>16.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>1.00</td>
+      <td>0.12</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select $1 capture_version, wait_event, wait_event_type, datid, datname, query from pg_stat_activity where state=$2</td>
+    </tr>
+    <tr>
+      <td>statscollector</td>
+      <td>-529842715880601000</td>
+      <td>16.0 KB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>100.00</td>
+      <td>1</td>
+      <td>5.00</td>
+      <td>0.12</td>
+      <td>2.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>select $1 capture_version,  * from \n\t\t\t\t(select \n\t\t\t\t\tb.usename username,\n\t\t\t\t\ta.userid,\n\t\t\t\t\ta.queryid,\n\t\t\t\t\ta.shared_blks_read, \n\t\t\t\t\ta.shared_blks_hit,\n\t\t\t\t\ta.shared_blks_written,\n\t\t\t\t\ta.shared_blks_dirtied,\n                    a.temp_blks_read,\n                    a.temp_blks_written,\n                    a.blk_read_time,\n                    a.blk_write_time,\n                    a.rows,\n                    a.min_time,\n                    a.max_time,\n                    a.stddev_time,\n\t\t\t\t\ta.calls,\n\t\t\t\t\ta.total_time,\n                    a.query\n\t\t\t\tfrom pg_stat_statements a , pg_user b\n\t\t\t\twhere a.userid = b.usesysid\n\t\t\t\tand a.dbid = ( select oid from pg_database where datname = current_database() )\n\t\t\t\t) as pg_stat_statements where calls > $2</td>
+    </tr>
+  </tbody>
+</table>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total shared blocks written</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks read</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>postgres</td>
+      <td>9156502150409338362</td>
+      <td>4.1 MB</td>
+      <td>2.2 GB</td>
+      <td>217.6 MB</td>
+      <td>0.0 bytes</td>
+      <td>0.0 bytes</td>
+      <td>91.14</td>
+      <td>15013</td>
+      <td>2.33</td>
+      <td>1771.03</td>
+      <td>19.09</td>
+      <td>1.86</td>
+      <td>2.04</td>
+      <td>insert into large ( created_at, updated_at, col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)\nselect\n\tnow(),\n\tnow(),\n    $1,\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4(),\n    uuid_generate_v4()\n    Returning id</td>
+    </tr>
+  </tbody>
+</table>
+         <h2 id="ss_tr">Top 50 SQL in temp read</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>total shared blocks written</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks read</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+         <h2 id="ss_tw">Top 50 SQL in temp written</h2>
+         <a href="#overview">[back to menu]</a>
+         <table border="1" class="dataframe tftable">
+  <thead>
+    <tr style="text-align: right;">
+      <th>username</th>
+      <th>queryid</th>
+      <th>total temp blocks written</th>
+      <th>total temp blocks read</th>
+      <th>total shared blocks written</th>
+      <th>total shared blocks hit</th>
+      <th>total shared blocks read</th>
+      <th>total temp blocks read</th>
+      <th>total temp blocks written</th>
+      <th>block hit ratio (%)</th>
+      <th>total calls</th>
+      <th>ms per call</th>
+      <th>calls/second</th>
+      <th>shared blocks hit/call</th>
+      <th>shared blocks read/call</th>
+      <th>ms read time/call</th>
+      <th>query</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+         
+      </div>
+   </div>
+   </div>
+   </div>
+</body>
