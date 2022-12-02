@@ -31,7 +31,10 @@ def connect(connection_url, search_path, search_path_len, statement_timeout):
     url = URL.create(**connection_url)
 
     # establish the connection
-    engine = create_engine(url, connect_args={"ssl_context": ssl_context})
+    if cadata is None:
+        engine = create_engine(url)
+    else:
+        engine = create_engine(url, connect_args={"ssl_context": ssl_context})
 
     connection = engine.connect()
 
@@ -244,6 +247,8 @@ def main(config=None):
         sql_doc = sql.v13
     elif engine_major_version == 14:
         sql_doc = sql.v14
+    elif engine_major_version == 15:
+        sql_doc = sql.v15
 
     """
 	pass back the connections and the sql doc to process 

@@ -269,3 +269,17 @@ class CPG:
             "sql": "select version(), '{}' capture_version".format(CAPTURE_VERSION)
         },
     }
+
+    v15 = {
+        "pg_stat_statements": {"sql": pg_stat_statements_gte13},
+        "table_stats": {"sql": table_stats_common},
+        "index_stats": {"sql": index_stats_common},
+        "pg_stat_database": {"sql": pg_stat_database},
+        "pg_stat_bgwriter": {"sql": pg_stat_bgwriter},
+        "pg_stat_activity": {"sql": pg_stat_activity},
+        "pg_stat_progress_vacuum": {"sql": pg_stat_progress_vacuum},
+        "pg_settings": {"sql": pg_settings},
+        "version": {
+            "sql": "select version(), '{}' capture_version".format(CAPTURE_VERSION)
+        },
+    }

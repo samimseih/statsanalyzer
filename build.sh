@@ -1,5 +1,9 @@
+PYTHON3=$(which python3)
+$PYTHON3 -m venv /tmp/build_statsanalyzer.$$
+. /tmp/build_statsanalyzer.$$/bin/activate
+python3 -m pip install --upgrade pip
 pip install -r requirements.txt
-rm -rfv dist/$1
+rm -rfv dist
 rm -rfv /tmp/capture
 rm -rfv /tmp/report
 rm -rfv /tmp/snapper_rds
@@ -38,9 +42,4 @@ pyinstaller \
         --specpath /tmp/snapper_rds \
         --paths statsanalyzer \
         --onefile statsanalyzer/snapper_rds.py
-cd dist
-mkdir $1
-mv capture $1/.
-mv snapper_rds $1/.
-mv report $1/.
-zip -r $1.zip $1
+zip -r dist.zip dist
