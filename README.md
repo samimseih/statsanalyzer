@@ -15,7 +15,8 @@ Statsanalyzer can be scheduled in continuous collection mode or on-demand.
 
 [Generating a Snapshot Report](#generate-report)
 
-[Common Usage Example](#common-usage-example)
+[Help Menu](#help-menu)
+
 
 <h2 id="supported-versions">Supported Versions</h2>
 
@@ -50,9 +51,10 @@ build.bat
 3. Executables will be located in a directory called **dist**
 ```
 dist
-├── capture
-├── report
-└── snapper_rds
+└── statsanalyzer
+    ├── capture
+    ├── report
+    ├── < rest of the Python modules >
 ```
 
 <h2 id="start-using-for-postgres-local">Capturing Snapshots with Local Config File</h2>
@@ -87,7 +89,8 @@ CREATE EXTENSION
 
 #### 3. Run the capture utility by supplying the ```/tmp/myconfig``` configuration file.
 ```
-./capture -c /tmp/myconfig
+cd dist
+./statsanalyzer/capture -c /tmp/myconfig
 ```
 
 <h2 id="start-using-for-postgres-on-aws-rds-sm">Capturing Snapshots with AWS/SecretsManager</h2>
@@ -117,11 +120,13 @@ aws configure --profile snapshotprofile
 
 The SecretManager JSON should include the following fields:
 
-**username** : The username of the Database monitoring user.  the Step 1
-**password** : The password of the Database monitoring user. Created in Step 1
-**hosts** : The list of hosts to run a snapshot for. Providing a list is useful if you wish to take snapshots for read-replicas.
-**snapshot_root**: The root to write the snapshot to. This value is only used by the **capture** utility.
-**database_list**: List of databases on the Postgres cluster to take snapshots for.
+```
+username : The username of the Database monitoring user.  the Step 1
+password : The password of the Database monitoring user. Created in Step 1
+hosts : The list of hosts to run a snapshot for. Providing a list is useful if you wish to take snapshots for read-replicas.
+snapshot_root: The root to write the snapshot to. This value is only used by the **capture** utility.
+database_list: List of databases on the Postgres cluster to take snapshots for.
+```
 
 ```
 {
@@ -137,98 +142,58 @@ The SecretManager JSON should include the following fields:
 }
 ```
 
-Below is a sample Secret
+Run a capture using the secrets manager. In the below example the name of the secret is ```prod/cluster1```
 
-![Alt text](images/secret.png?raw=true "Title")
+```
+./statsanalyzer/capture -m aws_secretsmanager -c prod/cluster1
+```
 
 <h2 id="generate-report">Generating a Snapshot Report</h2>
 
-There are multiple methods to generate snapshots and reports. These are the **snapper_rds** utility or **scheduled** using cron.
+There are multiple methods to generate snapshots and reports.
 
 A sample report can be found here: https://htmlpreview.github.io/?https://github.com/samimseih/statsanalyzer/blob/master/samples/report.html
 
-
-<details>
-  <summary><b>snapper_rds</b> is intended to be used for real-time reporting. The utility generates snapshots and a report in a single run. This method is intended for a users who do not wish to maintain snapshots long term. snapper_rds currently only supports AWS/RDS insatnces.</summary>
+<summary><b>scripted</b> is intended to be used for a single snapshot window</summary>
 
 ```
-usage: snapper_rds.py [-h] [-i I] [-U U] [-P P] [-S S] [--sa-snapper-snapshot-root SA_SNAPPER_SNAPSHOT_ROOT]
-                      [--sa-snapper-database-list SA_SNAPPER_DATABASE_LIST]
-                      [--sa-snapper-report-output-dir SA_SNAPPER_REPORT_OUTPUT_DIR] [--sa-snapper-no-snapshots SA_SNAPPER_NO_SNAPSHOTS]
-                      [--sa-snapper-snapshots-interval SA_SNAPPER_SNAPSHOTS_INTERVAL] [--sa-no-delete-snapshots SA_NO_DELETE_SNAPSHOTS]
-                      [--aws_region AWS_REGION]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i I                  List of rds instances
-  -U U                  stats database user. Default is the environment variable PGUSER
-  -P P                  stats database user password. Default is the environment variable PGPASSWORD
-  -S S                  SecretManager Secret Name
-  --sa-snapper-snapshot-root SA_SNAPPER_SNAPSHOT_ROOT, -r SA_SNAPPER_SNAPSHOT_ROOT
-                        Snapshot Root path
-  --sa-snapper-database-list SA_SNAPPER_DATABASE_LIST, -d SA_SNAPPER_DATABASE_LIST
-                        List of Databases to snapshot
-  --sa-snapper-report-output-dir SA_SNAPPER_REPORT_OUTPUT_DIR, -o SA_SNAPPER_REPORT_OUTPUT_DIR
-                        List of Databases to snapshot
-  --sa-snapper-no-snapshots SA_SNAPPER_NO_SNAPSHOTS, -sn SA_SNAPPER_NO_SNAPSHOTS
-                        Number of snapshots. Default is 2
-  --sa-snapper-snapshots-interval SA_SNAPPER_SNAPSHOTS_INTERVAL, -si SA_SNAPPER_SNAPSHOTS_INTERVAL
-                        Interval between snapshots in seconds. Default is 30 seconds
-  --sa-no-delete-snapshots SA_NO_DELETE_SNAPSHOTS
-                        Delete the snapshots. Default is False
-  --aws_region AWS_REGION
-                        AWS Region of the SecretsManager. Default value: us-east-1
- ```
-For example, to report on the instances in the Aurora cluster "demo1". In this example, 6 snapshots will be taken at 10 second intervals. The output is the location of the HTML report summarizing the snapshots.
-
- In this example, the AWS/SecretsManager secret called **prod/cluster1** is used for snapper_rds
-  
- ```
- export AWS_PROFILE=snapshotprofile
-./snapper_rds -S prod/cluster1
-...
-......
-.........
-  
-*** list of generated reports:
-/Users/simseih/Downloads/demo1-instance-1.abcdefghijk.us-east-1.rds.amazonaws.com_demodb1_07_24_2021_10_55_22.html
-/Users/simseih/Downloads/demo1-instance-1-us-east-1a.abcdefghijk.us-east-1.rds.amazonaws.com_demodb1_07_24_2021_10_55_22.html
-
-run "rm -rf /tmp/4eaafb3a-a8ac-4c11-8cee-91193ed5642c" to remove snapshot files
+cd dist; \
+./statsanalyzer/capture -c myconf \
+sleep 120
+./statsanalyzer/capture -c myconf \
+./statsanalyzer/capture -r <snapshot directory>
 ```
- </details>
  
- <details>
-  <summary><b>scheduled</b> is intended to be used for a long-term capturing of statistics data.</summary>
+<summary><b>scheduled</b> is intended to be used for a long-term capturing of statistics data.</summary>
 
 The capture utility is used to capture the snapshots. The general guideline is to run at 60 minutes intervals. 
 
 i.e. In this example cron is used.
 ```
-*/60 * * * * $HOME/Downloads/capture -m aws_secretsmanager -c prod/cluster1
+*/60 * * * * dist/statsanalyzer/capture -m aws_secretsmanager -c prod/cluster1
 ```
 
-The report utility is used to report on the snapshots.
+<summary><b>reporting</b> To report on a specific snapshot</summary>
 
 ```
-./report \
+dist/statsanalyzer/report \
 -r /tmp/pgsnapshots/host=demo1-instance-1.abcdefghijk.us-east-1.rds.amazonaws.com/database=demodb1/ \
 -o $HOME/Downloads/report.html
 ```
- </details>
 
-<h2 id="common-usage-example">Common Usage Example</h2>
+<h2 id="help-menu">Help Menu</h2>
 
-Therere are a few ways to run StatsAnalyzer, but a very common and useful way is to generate a report in real-time. Below is an example of generating a report for a 60 second period using a configuration file called myconf created in the [Capturing Snapshots with Local Config File](#start-using-for-postgres-local) section of this guide.
+For the help menu, use the ```--help``` flag:
 
 ```
-./capture -c myconf && \
-sleep 60 && \
-./capture -c myconf && \
-./report --sa-report-snapshot-root /tmp/mypath/host=127.0.0.1/database=postgres
+./dist/statsanalyzer/capture --help
 ```
 
+or
 
+```
+./dist/statsanalyzer/report --help
+```
 
  
 ## License

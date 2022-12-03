@@ -1,4 +1,4 @@
-CAPTURE_VERSION = 1.1
+CAPTURE_VERSION = 1.2
 
 pg_stat_database = """
 select 
